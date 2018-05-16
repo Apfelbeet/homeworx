@@ -17,6 +17,8 @@
 .idea/**/dbnavigator.xml
 
 # Sensitive or high-churn files (extra)
+.idea
+
 .idea/**/compiler.xml
 .idea/**/homeworx.iml
 .idea/**/misc.xml
