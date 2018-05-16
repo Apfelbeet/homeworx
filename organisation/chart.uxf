@@ -1,149 +1,215 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>600</x>
-      <y>240</y>
-      <w>100</w>
-      <h>30</h>
+      <x>405</x>
+      <y>72</y>
+      <w>279</w>
+      <h>126</h>
     </coordinates>
-    <panel_attributes>Schedule</panel_attributes>
+    <panel_attributes>Schedule
+-
+ArrayList&lt;Subject&gt; subjects
+ArrayList&lt;Reminder&gt; reminders
+-
+ArrayList&lt;Subjects&gt; getSubjects()
+void setSubjects(ArrayList&lt;Subject&gt; subjects)
+ArrayList&lt;Lesson&gt; getLesson(Day day)
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>370</y>
-      <w>100</w>
-      <h>30</h>
+      <x>603</x>
+      <y>297</y>
+      <w>153</w>
+      <h>117</h>
     </coordinates>
-    <panel_attributes>Lesson</panel_attributes>
+    <panel_attributes>Lesson
+-
+Day day
+int length
+int startHour
+-
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>230</y>
-      <w>100</w>
-      <h>40</h>
+      <x>855</x>
+      <y>297</y>
+      <w>90</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>Day
-&lt;&lt;enum&gt;&gt;</panel_attributes>
+&lt;&lt;enum&gt;&gt;
+-
+MONDAY
+TUESDAY
+WEDNESDAY
+THURSDAY
+FRIDAY
+SATURDAY
+SUNDAY</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>370</y>
-      <w>100</w>
-      <h>30</h>
+      <x>306</x>
+      <y>297</y>
+      <w>207</w>
+      <h>117</h>
     </coordinates>
-    <panel_attributes>Subject</panel_attributes>
+    <panel_attributes>Subject
+-
+String name
+String short
+ArrayList&lt;Homework&gt; homeworks
+ArrayList&lt;Lesson&gt; lessons</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>600</x>
-      <y>460</y>
-      <w>100</w>
-      <h>40</h>
+      <x>801</x>
+      <y>171</y>
+      <w>90</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>Task
-&lt;&lt;interface&gt;&gt;</panel_attributes>
+    <panel_attributes>Reminder
+-</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>560</y>
-      <w>100</w>
-      <h>30</h>
+      <x>513</x>
+      <y>495</y>
+      <w>117</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>Reminder</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>530</x>
-      <y>560</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>Homework</panel_attributes>
+    <panel_attributes>Homework
+-
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>490</y>
-      <w>80</w>
-      <h>90</h>
+      <x>504</x>
+      <y>405</y>
+      <w>81</w>
+      <h>108</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;70.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+</panel_attributes>
+    <additional_attributes>60.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>490</y>
-      <w>110</w>
-      <h>90</h>
+      <x>450</x>
+      <y>189</y>
+      <w>45</w>
+      <h>126</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;70.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>390</y>
-      <w>80</w>
-      <h>90</h>
+      <x>747</x>
+      <y>306</y>
+      <w>126</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;70.0;60.0;10.0</additional_attributes>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>260</y>
-      <w>80</w>
-      <h>130</h>
+      <x>504</x>
+      <y>306</y>
+      <w>117</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>60.0;110.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>260</y>
-      <w>230</w>
-      <h>130</h>
+      <x>675</x>
+      <y>171</y>
+      <w>144</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>210.0;110.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>690</x>
-      <y>240</y>
-      <w>160</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
     <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>333</y>
+      <w>117</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1098</x>
+      <y>315</y>
+      <w>207</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>/Task/
+&lt;&lt;abstract&gt;&gt;
+-
+String description
+Date deadline
+int priority
+-
+void editDeadline(Date newDate)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>621</x>
+      <y>405</y>
+      <w>495</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>530.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>216</y>
+      <w>234</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;110.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
