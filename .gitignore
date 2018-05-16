@@ -16,9 +16,17 @@
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
 
+# Sensitive or high-churn files (extra)
+.idea/**/compiler.xml
+.idea/**/homeworx.iml
+.idea/**/misc.xml
+.idea/**/modules.xml
+.idea/**/workspace.xml
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
+.idea/**/modules
 
 # CMake
 cmake-build-debug/
