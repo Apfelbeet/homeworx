@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>9</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>405</x>
-      <y>72</y>
-      <w>279</w>
-      <h>126</h>
+      <x>120</x>
+      <y>352</y>
+      <w>248</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>Schedule
 -
-ArrayList&lt;Subject&gt; subjects
-ArrayList&lt;Reminder&gt; reminders
+- ArrayList&lt;Subject&gt; subjects
+- ArrayList&lt;Reminder&gt; reminders
 -
-ArrayList&lt;Subjects&gt; getSubjects()
-void setSubjects(ArrayList&lt;Subject&gt; subjects)
-ArrayList&lt;Lesson&gt; getLesson(Day day)
++ ArrayList&lt;Subjects&gt; getSubjects()
++ void setSubjects(ArrayList&lt;Subject&gt; subjects)
++ ArrayList&lt;Lesson&gt; getLesson(Day day)
 
 </panel_attributes>
     <additional_attributes/>
@@ -24,27 +24,28 @@ ArrayList&lt;Lesson&gt; getLesson(Day day)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>603</x>
-      <y>297</y>
-      <w>153</w>
-      <h>117</h>
+      <x>288</x>
+      <y>552</y>
+      <w>176</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>Lesson
 -
-Day day
-int length
-int startHour
+- int id
+- Day day
+- int length
+- int startHour
 -
-</panel_attributes>
++ Lesson(int id, Day day, int length, int startHour)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>855</x>
-      <y>297</y>
-      <w>90</w>
-      <h>126</h>
+      <x>520</x>
+      <y>552</y>
+      <w>80</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>Day
 &lt;&lt;enum&gt;&gt;
@@ -61,26 +62,32 @@ SUNDAY</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>306</x>
-      <y>297</y>
-      <w>207</w>
-      <h>117</h>
+      <x>32</x>
+      <y>552</y>
+      <w>184</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>Subject
 -
 String name
 String short
 ArrayList&lt;Homework&gt; homeworks
-ArrayList&lt;Lesson&gt; lessons</panel_attributes>
+ArrayList&lt;Lesson&gt; lessons
+ArrayList&lt;Grade&gt; grades
+-
++ Subject(String name, String short)
++ ArrayList&lt;Homework&gt; getHomework()
++ ArrayList&lt;Lesson&gt; getLessons()
++ ArrayList&lt;Grades&gt; getGrades()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>801</x>
-      <y>171</y>
-      <w>90</w>
-      <h>54</h>
+      <x>472</x>
+      <y>472</y>
+      <w>80</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Reminder
 -</panel_attributes>
@@ -89,10 +96,10 @@ ArrayList&lt;Lesson&gt; lessons</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>513</x>
-      <y>495</y>
-      <w>117</w>
-      <h>54</h>
+      <x>328</x>
+      <y>704</y>
+      <w>104</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Homework
 -
@@ -102,114 +109,320 @@ ArrayList&lt;Lesson&gt; lessons</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>405</y>
-      <w>81</w>
-      <h>108</h>
+      <x>208</x>
+      <y>648</y>
+      <w>176</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n
 </panel_attributes>
-    <additional_attributes>60.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>200.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>450</x>
-      <y>189</y>
-      <w>45</w>
-      <h>126</h>
+      <x>160</x>
+      <y>496</y>
+      <w>40</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n
 </panel_attributes>
-    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>747</x>
-      <y>306</y>
-      <w>126</w>
-      <h>27</h>
+      <x>456</x>
+      <y>560</y>
+      <w>80</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>306</y>
-      <w>117</w>
-      <h>36</h>
+      <x>208</x>
+      <y>560</y>
+      <w>96</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>171</y>
-      <w>144</w>
-      <h>36</h>
+      <x>360</x>
+      <y>440</y>
+      <w>128</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=0..n</panel_attributes>
-    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>140.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>333</y>
-      <w>117</w>
-      <h>36</h>
+      <x>208</x>
+      <y>584</y>
+      <w>96</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1098</x>
-      <y>315</y>
-      <w>207</w>
-      <h>135</h>
+      <x>736</x>
+      <y>568</y>
+      <w>184</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>/Task/
 &lt;&lt;abstract&gt;&gt;
 -
-String description
-Date deadline
-int priority
+- int id
+- String description
+- Date deadline
+- int priority
 -
-void editDeadline(Date newDate)</panel_attributes>
++ Task(int id, String description, Date deadline, int priority)
++ void setDeadline(Date newDate)
++ void setDescription(String newDescription)
++ void serPriority(int priority)
++ int getId()
++ String getDescription()
++ Date getDeadline()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>621</x>
-      <y>405</y>
-      <w>495</w>
-      <h>108</h>
+      <x>424</x>
+      <y>648</y>
+      <w>328</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>530.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>390.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>216</y>
-      <w>234</w>
-      <h>117</h>
+      <x>544</x>
+      <y>512</y>
+      <w>208</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>240.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>240.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>864</x>
+      <y>256</y>
+      <w>144</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Writer
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>200</x>
+      <y>96</y>
+      <w>160</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Manager
+-
+Schedule schedule
+DataManager dataManager
+GuiManager guiManager
+-
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>424</x>
+      <y>0</y>
+      <w>328</w>
+      <h>304</h>
+    </coordinates>
+    <panel_attributes>DataManager
+-
+- Writer writer
+- Reader reader
+-
++ ArrayList&lt;Subject&gt; readSubjects()
+- ArrayList&lt;Lesson&gt; readLesson()
+- ArrayList&lt;Homework&gt; readHomework()
++ ArrayList&lt;Reminder&gt; readReminder()
++ boolean writeSubject(Subject subject)
++ boolean writeLesson(Lesson lesson)
++ boolean writeHomework(Homework homework, Subject subject)
++ boolean writeReminder(Reminder reminder)
++ boolean writeGrade(Grade grade)
++ boolean editSubject(Subject subject)
++ boolean editLesson(Lesson lesson)
++ boolean editHomework(Homework homework)
++ boolean editReminder(Reminder reminder)
++ boolean editGrade(Grade grade, Subject subject)
++ boolean removeSubject(Subject subject)
++ boolean removeLesson(Lesson lesson)
++ boolean removeHomework(Homework homework)
++ boolean removeReminder(Reminder reminder)
++ boolean removeGrade(Grade grade, Subject subject)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>824</x>
+      <y>88</y>
+      <w>144</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>Reader
+-
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>248</x>
+      <y>232</y>
+      <w>32</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>20.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>352</x>
+      <y>48</y>
+      <w>88</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>0</y>
+      <w>96</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>100.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>56</y>
+      <w>136</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>150.0;300.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>96</y>
+      <w>88</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>GuiManager</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>112</y>
+      <w>72</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>744</y>
+      <w>280</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Grade
+-
+- int id
+- boolean exam
+- int value
+- int wage
+-
++ Grade(int id, boolean exam, int value, int wage)
++ void setExam(boolean isExam)
++ void setValue(int value)
++ void setWage(int wage)
++ int getValue()
++ int getWage()
++ int getId()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>24</x>
+      <y>696</y>
+      <w>72</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes>
+    <additional_attributes>70.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>584</x>
+      <y>344</y>
+      <w>160</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>IdManager
+-
+- static Current_Id = 0
+-
++ static int generateId()
++ static void setCurrentId()
+
+</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
