@@ -1,30 +1,37 @@
 package logic;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
 
 /**
-    Management of all subjects and reminder. Access to the logic part of the application
-
-    @version 1.1
+ *
  */
-
 public class Schedule {
-    private ArrayList<Subject> subjects;
-    private ArrayList<Reminder> reminders;
 
-    public ArrayList<Reminder> getReminders() {
-        return reminders;
+    Map<Day, SchoolDay> days;
+    ArrayList<Reminder> reminders;
+    ArrayList<Subject> subjects;
+
+
+    public Schedule(int dayLength){
+
     }
 
-    public ArrayList<Subject> getSubjects() {
-        return subjects;
+    public void addLesson(int lessonHour, Lesson lesson, Day day){
+        throw new NotImplementedException();
     }
 
-    public void setReminders(ArrayList<Reminder> reminders) {
-        this.reminders = reminders;
+    public Day getDayFromLesson(Lesson l){
+        throw new NotImplementedException();
     }
 
-    public void setSubjects(ArrayList<Subject> subjects) {
-        this.subjects = subjects;
+    public Date getNextLessonTime(Subject l){
+        throw new NotImplementedException();
+    }
+
+    public ArrayList<Lesson> getLessonsOfDay(Day day){
+        throw new NotImplementedException();
     }
 }

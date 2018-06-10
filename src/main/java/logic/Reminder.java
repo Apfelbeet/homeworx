@@ -1,4 +1,4 @@
 package logic;
 
-public class Reminder {
+public class Reminder extends Task {
 }
