@@ -15,8 +15,14 @@ public class Schedule {
     ArrayList<Subject> subjects;
 
 
-    public Schedule(int dayLength){
 
+    public Schedule(int dayLength, boolean weekendSchool){
+        for(Day d : Day.values()){
+            if(d == Day.Saturday)
+                break;
+
+            days.put(d, new SchoolDay(dayLength));
+        }
     }
 
     public void addLesson(int lessonHour, Lesson lesson, Day day){
@@ -33,5 +39,13 @@ public class Schedule {
 
     public ArrayList<Lesson> getLessonsOfDay(Day day){
         throw new NotImplementedException();
+    }
+
+    public void addReminder(Reminder r){
+        reminders.add(r);
+    }
+
+    public void removeReminder(Reminder r){
+        reminders.remove(r);
     }
 }
