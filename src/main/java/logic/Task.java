@@ -2,12 +2,27 @@ package logic;
 
 import java.util.Date;
 
-public class Task {
+public abstract class Task {
 
     private int id;
     private String description;
     private Date deadline;
     private int priority;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
 
     public Task(int id, String description, Date deadline, int priority) {
         this.id = id;
@@ -36,6 +51,7 @@ public class Task {
         return priority;
     }
 
+
     public void setId(int id) {
         this.id = id;
     }
@@ -47,7 +63,6 @@ public class Task {
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
-
     public void setPriority(int priority) {
         this.priority = priority;
     }

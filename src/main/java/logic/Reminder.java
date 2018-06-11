@@ -10,4 +10,5 @@ public class Reminder extends Task{
     public Reminder(String description, Date deadline, int priority) {
         super(description, deadline, priority);
     }
+
 }

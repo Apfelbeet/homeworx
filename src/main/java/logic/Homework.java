@@ -1,5 +1,6 @@
 package logic;
 
+
 import java.util.Date;
 
 /**
@@ -17,4 +18,5 @@ public class Homework extends Task{
     public Homework(String description, Date deadline, int priority) {
         super(description, deadline, priority);
     }
+
 }
