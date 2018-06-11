@@ -23,6 +23,7 @@ public abstract class Task {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
 
     public Task(int id, String description, Date deadline, int priority) {
         this.id = id;
@@ -31,37 +32,14 @@ public abstract class Task {
         this.priority = priority;
     }
 
-    public Task(String description, Date deadline, int priority) {
-        this(IdManager.generateId(), description, deadline, priority);
-    }
-
     public int getId() {
         return id;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Date getDeadline() {
-        return deadline;
-    }
-
     public int getPriority() {
         return priority;
     }
-
-
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
     }
     public void setPriority(int priority) {
         this.priority = priority;

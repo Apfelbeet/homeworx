@@ -15,8 +15,8 @@ public class Homework extends Task{
         super(id, description, deadline, priority);
     }
 
-    public Homework(String description, Date deadline, int priority) {
+    /*public Homework(String description, Date deadline, int priority) {
         super(description, deadline, priority);
-    }
+    }*/
 
 }
