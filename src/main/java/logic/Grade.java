@@ -6,5 +6,5 @@ public class Grade {
 }
 
 enum GradeType {
-    Schulaufgabe, Ausfrage, Kurztest, Test, Ex, Referat, Praesentation, Klausur, Projekt, PraktischeNote, Unterrichtsbeitrag
+    Schulaufgabe, Ausfrage, Kurztest, Test, Ex, Referat, Praesentation, Projekt, PraktischeNote, Unterrichtsbeitrag
 }
