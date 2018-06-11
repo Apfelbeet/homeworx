@@ -3,8 +3,12 @@ package logic;
 public class Grade {
     public int value;
     public GradeType gradeType;
+
+
+    public Grade(int value, GradeType gradeType) {
+        this.value = value;
+        this.gradeType = gradeType;
+    }
 }
 
-enum GradeType {
-    Schulaufgabe, Ausfrage, Kurztest, Test, Ex, Referat, Praesentation, Projekt, PraktischeNote, Unterrichtsbeitrag
-}
+

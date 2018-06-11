@@ -1,8 +1,7 @@
 package logic;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 /*ouefhfefuef
 
  *
@@ -27,11 +26,17 @@ public class Schedule {
     }
 
     public void addLesson(int lessonHour, Lesson lesson, Day day){
-        throw new NotImplementedException();
+        days.get(day).getLessons()[lessonHour] = lesson;
     }
 
     public Day getDayFromLesson(Lesson l){
-        throw new NotImplementedException();
+        AtomicReference<Day> day = new AtomicReference<>();
+        day.set(null);
+        days.forEach((key, value) -> {
+            if(value.getLessonIndex(l) != -1)
+                day.set(key);
+        });
+        return day.get();
     }
 
     public GregorianCalendar getNextLessonTime(Subject s){
@@ -63,5 +68,15 @@ public class Schedule {
 
     public void removeReminder(Reminder r){
         reminders.remove(r);
+    }
+
+    /*public void addNewGrade(Subject subject, Grade grade) {
+        int index = subjects.indexOf(subject);
+        if(index != -1)
+            subjects.get(index).addNewGrade(grade);
+    }*/
+
+    public Map<Day, SchoolDay> getDays() {
+        return days;
     }
 }

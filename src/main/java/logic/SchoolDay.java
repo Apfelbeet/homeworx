@@ -1,9 +1,5 @@
 package logic;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.util.Arrays;
-
 /**
  *
  */
@@ -34,13 +30,15 @@ public class SchoolDay {
         this.lessons[index].setLength(length);
     }
 
-
     public Lesson[] getLessons(){
         return lessons;
     }
 
-    public int getLessonindex(Lesson l){
-        throw new NotImplementedException();
+    public int getLessonIndex(Lesson l){
+        for(int i = 0; i < lessons.length; i++) {
+            if(lessons[i] == l) return i;
+        }
+        return -1;
     }
 
 
