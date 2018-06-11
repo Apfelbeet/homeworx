@@ -43,7 +43,7 @@ public class Subject {
 
     public float calculateAverage()
     {
-        int oralTotal = 0, writtenTotal = 0, oralCount = 0, writtenCount = 0;
+        float oralTotal = 0, writtenTotal = 0, oralCount = 0, writtenCount = 0;
 
         for(Grade g: grades){
             switch (g.gradeType){
