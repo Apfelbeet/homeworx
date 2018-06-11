@@ -1,10 +1,8 @@
 package logic;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
-import java.util.Calendar;
+
+import java.util.*;
 /*ouefhfefuef
 
  *
@@ -19,6 +17,7 @@ public class Schedule {
 
 
     public Schedule(int dayLength, boolean weekendSchool){
+        days = new HashMap<Day, SchoolDay>();
         for(Day d : Day.values()){
             if(d == Day.Saturday)
                 break;
@@ -35,10 +34,23 @@ public class Schedule {
         throw new NotImplementedException();
     }
 
-    public Date getNextLessonTime(Subject l){
-        Date d = new Date();
-        throw new NotImplementedException();
+    public GregorianCalendar getNextLessonTime(Subject s){
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+        int currentDay = Day.values()[dayOfWeek - 2].ordinal();
+        for(int i = currentDay; i < 14; i++){
+            for(Lesson lesson : days.get(Day.values()[currentDay]).getLessons()){
+                if(lesson.getSubject() == s){
+                    GregorianCalendar returnType = new GregorianCalendar();
+                    returnType.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_WEEK + i + 2));
+                    return returnType;
+                }
+            }
+        }
 
+
+        return null;
     }
 
     public Lesson[] getLessonsOfDay(Day day){
