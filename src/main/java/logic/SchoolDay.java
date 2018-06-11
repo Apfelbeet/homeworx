@@ -34,6 +34,11 @@ public class SchoolDay {
         this.lessons[index].setLength(length);
     }
 
+
+    public Lesson[] getLessons(){
+        return lessons;
+    }
+
     public int getLessonindex(Lesson l){
         throw new NotImplementedException();
     }

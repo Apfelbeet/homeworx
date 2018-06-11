@@ -4,12 +4,14 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.Calendar;
+/*ouefhfefuef
 
-/**
  *
  */
-public class Schedule {
 
+
+public class Schedule {
     Map<Day, SchoolDay> days;
     ArrayList<Reminder> reminders;
     ArrayList<Subject> subjects;
@@ -34,11 +36,13 @@ public class Schedule {
     }
 
     public Date getNextLessonTime(Subject l){
+        Date d = new Date();
         throw new NotImplementedException();
+
     }
 
-    public ArrayList<Lesson> getLessonsOfDay(Day day){
-        throw new NotImplementedException();
+    public Lesson[] getLessonsOfDay(Day day){
+        return days.get(day).getLessons();
     }
 
     public void addReminder(Reminder r){
