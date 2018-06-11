@@ -1,11 +1,10 @@
 package logic;
 
 public class Grade {
-
     public int value;
     public GradeType gradeType;
 }
 
 enum GradeType {
-    Schulaufgabe, Ausfrage, Test
+    Schulaufgabe, Ausfrage, Kurztest, Test, Ex, Referat, Praesentation, Klausur, Projekt, PraktischeNote, Unterrichtsbeitrag
 }

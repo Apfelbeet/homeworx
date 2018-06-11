@@ -40,4 +40,23 @@ public class Subject {
     public void setShortName(String shortName) {
         this.shortName = shortName;
     }
+
+    public float calculateAverage()
+    {
+        int oralTotal = 0, writtenTotal = 0, oralCount = 0, writtenCount = 0;
+
+        for(Grade g: grades){
+            switch (g.gradeType){
+                case Schulaufgabe:
+                    writtenTotal += g.value;
+                    writtenCount += 1;
+                    break;
+                default:
+                    oralTotal += g.value;
+                    oralCount += 1;
+            }
+
+        }
+        return ((writtenTotal/writtenCount)*2 + oralTotal/oralCount)/3;
+    }
 }
