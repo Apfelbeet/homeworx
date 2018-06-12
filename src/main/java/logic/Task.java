@@ -1,12 +1,13 @@
 package logic;
 
-import java.util.Date;
+import java.util.Calendar;
+
 
 public abstract class Task {
 
     private int id;
     private String description;
-    private Date deadline;
+    private Calendar deadline;
     private int priority;
 
     public String getDescription() {
@@ -17,25 +18,25 @@ public abstract class Task {
         this.description = description;
     }
 
-    public Date getDeadline() {
+    public Calendar getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline) {
+    public void setDeadline(Calendar deadline) {
         this.deadline = deadline;
     }
 
-    public Task(int id, String description, Date deadline, int priority) {
+    public Task(int id, String description, Calendar deadline, int priority) {
         this.id = id;
         this.description = description;
         this.deadline = deadline;
         this.priority = priority;
     }
 
-   /* public Task(String description, Date deadline, int priority) {
+   public Task(String description, Calendar deadline, int priority) {
         this(IdManager.generateId(), description, deadline, priority);
     }
-*/
+
     public int getId() {
         return id;
     }
