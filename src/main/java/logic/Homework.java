@@ -1,6 +1,7 @@
 package logic;
 
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -11,12 +12,12 @@ import java.util.Date;
 
 public class Homework extends Task{
 
-    public Homework(int id, String description, Date deadline, int priority) {
+    public Homework(int id, String description, Calendar deadline, int priority) {
         super(id, description, deadline, priority);
     }
-/*
-    public Homework(String description, Date deadline, int priority) {
+
+    public Homework(String description, Calendar deadline, int priority) {
         super(description, deadline, priority);
     }
-*/
+
 }

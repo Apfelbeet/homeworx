@@ -18,8 +18,8 @@ public class Schedule {
     public Schedule(int dayLength, boolean weekendSchool){
         days = new HashMap<Day, SchoolDay>();
         for(Day d : Day.values()){
-            if(d == Day.Saturday)
-                break;
+            /*if(d == Day.Saturday)
+                break;*/
 
             days.put(d, new SchoolDay(dayLength));
         }
@@ -40,21 +40,20 @@ public class Schedule {
     }
 
     public GregorianCalendar getNextLessonTime(Subject s){
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = GregorianCalendar.getInstance();
         cal.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"));
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
         int currentDay = Day.values()[dayOfWeek - 2].ordinal();
         for(int i = currentDay; i < 14; i++){
-            for(Lesson lesson : days.get(Day.values()[currentDay]).getLessons()){
-                if(lesson.getSubject() == s){
+            for(Lesson lesson : days.get(Day.values()[i % 7]).getLessons()){
+                if(lesson != null && lesson.getSubject() == s){
                     GregorianCalendar returnType = new GregorianCalendar();
-                    returnType.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_WEEK + i + 2));
+                    returnType.add(Calendar.DAY_OF_MONTH, i -1);
+                    //returnType.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_WEEK) + i + 2);
                     return returnType;
                 }
             }
         }
-
-
         return null;
     }
 
