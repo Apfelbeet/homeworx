@@ -69,11 +69,16 @@ public class Schedule {
         reminders.remove(r);
     }
 
-    /*public void addNewGrade(Subject subject, Grade grade) {
+    public ArrayList<Homework> getHomeworkFromSubject(Subject subject){
+        return subjects.get(subjects.indexOf(subject)).getHomework();
+    }
+
+    public void addNewGrade(Subject subject, Grade grade) {
         int index = subjects.indexOf(subject);
-        if(index != -1)
+        if(index != -1){
             subjects.get(index).addNewGrade(grade);
-    }*/
+        }
+    }
 
     public Map<Day, SchoolDay> getDays() {
         return days;
