@@ -80,6 +80,15 @@ public class Schedule {
         }
     }
 
+    public float calculateGradeAverage(){
+        float g = 0;
+        for (int i = 0; i < subjects.size(); i++) {
+             g += subjects.get(i).calculateAverage();
+        }
+        float subjectsTotal = (float) subjects.size();
+        return g/subjectsTotal;
+    }
+
     public Map<Day, SchoolDay> getDays() {
         return days;
     }
