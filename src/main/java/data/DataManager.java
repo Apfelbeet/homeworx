@@ -1,6 +1,7 @@
 package data;
 
 import logic.*;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -55,10 +56,44 @@ public class DataManager {
     }
 
     private static ArrayList<Subject> readSubjects() {
-        return null;
+        ArrayList<Subject> list = new ArrayList<>();
+        try {
+
+            JSONArray array = getJsonData().getJSONArray("subjects");
+            for (int i = 0; i < array.length(); i++) {
+                list.add(new Subject(array.getJSONObject(i).getString("name"), array.getJSONObject(i).getString("shortName")));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     private static ArrayList<Grade> readGrades(Subject subject) {
+        ArrayList<Grade> grades = new ArrayList<>();
+        try {
+            JSONArray array = getSubject(subject).getJSONArray("grades");
+            for (int i = 0; i < array.length(); i ++) {
+                grades.add(new Grade(array.getJSONObject(i).getInt("value"), GradeType.valueOf(array.getJSONObject(i).getString("gradeType"))));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return grades;
+    }
+
+    private static JSONObject getSubject(Subject subject) {
+        try {
+            JSONArray jsonArray = getJsonData().getJSONArray("subjects");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                if (jsonArray.getJSONObject(i).getString("name").equals(subject.getName())) {
+                    return jsonArray.getJSONObject(i);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+        }
         return null;
     }
 
