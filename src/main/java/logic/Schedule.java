@@ -69,11 +69,25 @@ public class Schedule {
         reminders.remove(r);
     }
 
-    /*public void addNewGrade(Subject subject, Grade grade) {
+    public ArrayList<Homework> getHomeworkFromSubject(Subject subject){
+        return subjects.get(subjects.indexOf(subject)).getHomework();
+    }
+
+    public void addNewGrade(Subject subject, Grade grade) {
         int index = subjects.indexOf(subject);
-        if(index != -1)
+        if(index != -1){
             subjects.get(index).addNewGrade(grade);
-    }*/
+        }
+    }
+
+    public float calculateGradeAverage(){
+        float g = 0;
+        for (int i = 0; i < subjects.size(); i++) {
+             g += subjects.get(i).calculateAverage();
+        }
+        float subjectsTotal = (float) subjects.size();
+        return g/subjectsTotal;
+    }
 
     public Map<Day, SchoolDay> getDays() {
         return days;
