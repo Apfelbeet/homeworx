@@ -1,5 +1,8 @@
 package logic;
 
+import data.Data;
+import data.DataManager;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 /*ouefhfefuef
@@ -23,6 +26,21 @@ public class Schedule {
 
             days.put(d, new SchoolDay(dayLength));
         }
+    }
+
+    public Schedule(Data data) {
+        days = new HashMap<Day, SchoolDay>();
+        for(int i = 0; i < data.getSchoolDays().length; i++) {
+            days.put(Day.values()[i], data.getSchoolDays()[i]);
+        }
+        IdManager.setId(data.getCurrentId());
+        subjects = data.getSubjects();
+        reminders = data.getReminder();
+
+    }
+
+    public Schedule() {
+        this(DataManager.readAll());
     }
 
     public void addLesson(int lessonHour, Lesson lesson, Day day){
@@ -92,4 +110,5 @@ public class Schedule {
     public Map<Day, SchoolDay> getDays() {
         return days;
     }
+
 }

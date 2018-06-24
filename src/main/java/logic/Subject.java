@@ -2,6 +2,8 @@ package logic;
 
 import java.util.ArrayList;
 
+import static logic.GradeType.Schulaufgabe;
+
 public class Subject {
 
     private ArrayList<Homework> homework;
@@ -56,13 +58,13 @@ public class Subject {
         float oralTotal = 0, writtenTotal = 0, oralCount = 0, writtenCount = 0;
 
         for(Grade g: grades){
-            switch (g.gradeType){
+            switch (g.getGradeType()){
                 case Schulaufgabe:
-                    writtenTotal += g.value;
+                    writtenTotal += g.getValue();
                     writtenCount += 1;
                     break;
                 default:
-                    oralTotal += g.value;
+                    oralTotal += g.getValue();
                     oralCount += 1;
             }
 

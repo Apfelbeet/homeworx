@@ -1,6 +1,5 @@
 package data;
 
-import logic.Lesson;
 import logic.Reminder;
 import logic.SchoolDay;
 import logic.Subject;
@@ -9,13 +8,13 @@ import java.util.ArrayList;
 
 public class Data {
     private ArrayList<Subject> subjects;
-    private ArrayList<Lesson> lessons;
+    private SchoolDay[] schoolDays;
     private ArrayList<Reminder> reminder;
     private int currentId;
 
-    public Data(ArrayList<Subject> subjects, ArrayList<Lesson> lesson, ArrayList<Reminder> reminder, int currentId) {
+    public Data(ArrayList<Subject> subjects, SchoolDay[] schoolDays, ArrayList<Reminder> reminder, int currentId) {
         this.subjects = subjects;
-        this.lessons = lesson;
+        this.schoolDays = schoolDays;
         this.reminder = reminder;
         this.currentId = currentId;
     }
@@ -24,8 +23,8 @@ public class Data {
         return subjects;
     }
 
-    public ArrayList<Lesson> getLessons() {
-        return lessons;
+    public SchoolDay[] getSchoolDays() {
+        return schoolDays;
     }
 
     public ArrayList<Reminder> getReminder() {
