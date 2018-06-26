@@ -1,4 +1,5 @@
 
+import data.DataManager;
 import logic.*;
 
 import java.util.Calendar;
@@ -7,7 +8,7 @@ import java.util.GregorianCalendar;
 public class testMain {
 
     public static void main(String[] args) {
-        Schedule s = new Schedule(5, false);
+        /*Schedule s = new Schedule(5, false);
         Subject subject1 = new Subject("Deutsch", "D");
         Subject subject2 = new Subject("Mathe", "M");
         Lesson lesson1 = new Lesson(1, subject1);
@@ -23,8 +24,17 @@ public class testMain {
         s.getDays().get(Day.Friday).setLesson(0, lesson3);
         s.getDays().get(Day.Tuesday).setLesson(1, lesson4);
 
-        for (Lesson l : s.getLessonsOfDay(Day.Monday)) {
-            if(l != null) System.out.println(l.getSubject().getName());
-        }
+        DataManager.saveSubjects(subject1);
+        DataManager.saveSubjects(subject2);
+        DataManager.saveSubjects(new Subject("Deutsch", "Deu"));
+        DataManager.saveGrade(subject1, grade1);
+        DataManager.saveGrade(subject1, grade2);
+        DataManager.saveGrade(subject1, new Grade(4, 4, GradeType.Kurztest));
+        DataManager.saveHomework(subject1, new Homework("Schlafen", new GregorianCalendar(), 2));
+        DataManager.saveReminder(new Reminder("Bennets Logo ist schlecht :P", new GregorianCalendar(), 10));
+        DataManager.saveLesson(lesson1, s.getDayFromLesson(lesson1), s.getDays().get(s.getDayFromLesson(lesson1)));*/
+
+        Schedule s2 = new Schedule();
+        System.out.println(s2.getLessonsOfDay(Day.Monday));
     }
 }

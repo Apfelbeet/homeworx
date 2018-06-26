@@ -56,7 +56,7 @@ public class DataManager {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return -1;
+        return 0;
     }
 
     private static ArrayList<Subject> readSubjects() {
@@ -77,7 +77,7 @@ public class DataManager {
         ArrayList<Grade> grades = new ArrayList<>();
         try {
             JSONArray array = getSubject(subject).getJSONArray("grades");
-            for (int i = 0; i < array.length(); i ++) {
+            for (int i = 0; i < array.length(); i++) {
                 grades.add(new Grade(array.getJSONObject(i).getInt("id"), array.getJSONObject(i).getInt("value"), GradeType.valueOf(array.getJSONObject(i).getString("gradeType"))));
             }
         } catch (JSONException e) {
@@ -105,7 +105,7 @@ public class DataManager {
         ArrayList<Homework> homework = new ArrayList<>();
         try {
             JSONArray array = getSubject(subject).getJSONArray("homework");
-            for(int i = 0; i < array.length(); i++) {
+            for (int i = 0; i < array.length(); i++) {
                 GregorianCalendar calendar = new GregorianCalendar();
                 calendar.setTime(DATE_FORMAT.parse(array.getJSONObject(i).getString("date")));
                 homework.add(new Homework(array.getJSONObject(i).getInt("id"), array.getJSONObject(i).getString("description"), calendar, array.getJSONObject(i).getInt("priority")));
@@ -123,7 +123,7 @@ public class DataManager {
         ArrayList<Reminder> reminder = new ArrayList<>();
         try {
             JSONArray array = getJsonData().getJSONArray("reminders");
-            for(int i = 0; i < array.length(); i++) {
+            for (int i = 0; i < array.length(); i++) {
                 GregorianCalendar calendar = new GregorianCalendar();
                 calendar.setTime(DATE_FORMAT.parse(array.getJSONObject(i).getString("date")));
                 reminder.add(new Reminder(array.getJSONObject(i).getInt("id"), array.getJSONObject(i).getString("description"), calendar, array.getJSONObject(i).getInt("priority")));
@@ -138,7 +138,7 @@ public class DataManager {
 
     private static SchoolDay[] readSchoolDays(ArrayList<Subject> subjects) {
         SchoolDay[] days = new SchoolDay[7];
-        for(int i = 0; i < days.length; i++) days[i] = new SchoolDay(11);
+        for (int i = 0; i < days.length; i++) days[i] = new SchoolDay(11);
         try {
             JSONArray array = getJsonData().getJSONArray("lessons");
             for (int i = 0; i < array.length(); i++) {
@@ -152,15 +152,27 @@ public class DataManager {
     }
 
     private static Subject getSubjectFromId(String name, ArrayList<Subject> subjects) {
-        for(Subject subject: subjects) {
-            if(subject.getName().equals(name)) return subject;
+        for (Subject subject : subjects) {
+            if (subject.getName().equals(name)) return subject;
         }
         return null;
     }
 
     public static void saveId() {
         try {
-            getJsonData().put("id", IdManager.getId());
+            jsonObject = getJsonData().put("id", IdManager.getId());
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void saveJSONSubjectInSubjects(JSONObject subject, int index) {
+        try {
+            if (index > -1)
+                jsonObject = getJsonData().put("subjects", getJsonData().getJSONArray("subjects").put(index, subject));
+            else
+                jsonObject = getJsonData().put("subjects", getJsonData().getJSONArray("subjects").put(subject));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -168,60 +180,223 @@ public class DataManager {
 
     public static void saveSubjects(Subject subject) {
         try {
-            JSONObject jsonSubject = new JSONObject();
-            jsonSubject.put("name", subject.getName());
-            jsonSubject.put("shortName", subject.getShortName());
-            //FIXME
+            int i = indexOfSubjectWithName(subject);
+            JSONObject subjectJSON;
+            if (i > -1) {
+                subjectJSON = getJsonData().getJSONArray("subjects").getJSONObject(i);
+            } else {
+                subjectJSON = new JSONObject()
+                        .put("grades", new JSONArray())
+                        .put("homework", new JSONArray());
+            }
+            subjectJSON
+                    .put("name", subject.getName())
+                    .put("shortName", subject.getShortName());
+
+            saveJSONSubjectInSubjects(subjectJSON, i);
+            //System.out.println(jsonObject);
+            write();
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     public static void saveGrade(Subject subject, Grade grade) {
-
+        try {
+            JSONObject subjectJSON = getSubject(subject);
+            JSONObject gradeJSON = new JSONObject().
+                    put("id", grade.getId()).
+                    put("value", grade.getValue()).
+                    put("gradeType", grade.getGradeType().toString());
+            JSONArray gradesJSON = subjectJSON.getJSONArray("grades");
+            int gradeIndex = indexOfJSONArrayWithId(gradesJSON, grade.getId());
+            if (gradeIndex > -1)
+                gradesJSON.put(gradeIndex, gradeJSON);
+            else
+                gradesJSON.put(gradeJSON);
+            subjectJSON.put("grades", gradesJSON);
+            saveJSONSubjectInSubjects(subjectJSON, indexOfSubjectWithName(subject));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void saveHomework(Subject subject, Homework homework) {
-
+        try {
+            JSONObject subjectJSON = getSubject(subject);
+            JSONObject homeworkObjectJSON = new JSONObject()
+                    .put("id", homework.getId())
+                    .put("description", homework.getDescription())
+                    .put("date", DATE_FORMAT.format(homework.getDeadline().getTime()))
+                    .put("priority", homework.getPriority());
+            JSONArray homeworkArrayJSON = subjectJSON.getJSONArray("homework");
+            int homeworkIndex = indexOfJSONArrayWithId(homeworkArrayJSON, homework.getId());
+            if (homeworkIndex > -1)
+                homeworkArrayJSON.put(homeworkIndex, homeworkObjectJSON);
+            else
+                homeworkArrayJSON.put(homeworkObjectJSON);
+            subjectJSON.put("homework", homeworkArrayJSON);
+            saveJSONSubjectInSubjects(subjectJSON, indexOfSubjectWithName(subject));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void saveReminder(Reminder reminder) {
+        try {
+            JSONArray reminders = getJsonData().getJSONArray("reminders");
+            int i = indexOfJSONArrayWithId(reminders, reminder.getId());
+            JSONObject reminderJSON = new JSONObject()
+                    .put("id", reminder.getId())
+                    .put("description", reminder.getDescription())
+                    .put("date", DATE_FORMAT.format(reminder.getDeadline().getTime()))
+                    .put("priority", reminder.getPriority());
+            if (i > -1)
+                reminders.put(i, reminderJSON);
+            else
+                reminders.put(reminderJSON);
+            jsonObject = getJsonData().put("reminders", reminders);
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveLesson(Lesson lesson, Day day, SchoolDay schoolDay) {
+        try {
+            JSONArray lessons = getJsonData().getJSONArray("lessons");
+            int i = indexOfJSONArrayWithId(lessons, lesson.getId());
+            JSONObject lessonJSON = new JSONObject()
+                    .put("id", lesson.getId())
+                    .put("length", lesson.getLength())
+                    .put("subject", lesson.getSubject().getName())
+                    .put("day", day.name())
+                    .put("hour", schoolDay.getLessonIndex(lesson));
+            if (i > -1)
+                lessons.put(i, lessonJSON);
+            else
+                lessons.put(lessonJSON);
+            jsonObject = getJsonData().put("lessons", lessons);
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int indexOfJSONArrayWithId(JSONArray array, int id) {
+        try {
+            for (int i = 0; i < array.length(); i++) {
+                if (array.getJSONObject(i).getInt("id") == id)
+                    return i;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    private static int indexOfSubjectWithName(Subject subject) {
+        try {
+            JSONArray array = getJsonData().getJSONArray("subjects");
+            for (int i = 0; i < array.length(); i++) {
+                if (array.getJSONObject(i).getString("name").equals(subject.getName())) {
+                    return i;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return -1;
 
     }
 
-    public static void saveLesson(Lesson lesson) {
-
+    private static JSONArray remove(JSONArray array, int blackIndex) {
+        try {
+            JSONArray newList = new JSONArray();
+            for (int i = 0; i < array.length(); i++)
+                if (i != blackIndex) {
+                    newList.put(array.getJSONObject(i));
+                }
+            array = newList;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return array;
     }
 
     public static void deleteSubject(Subject subject) {
-        getJsonData().remove(subject.getName());
-        write();
+        try {
+            JSONArray subjects = getJsonData().getJSONArray("subjects");
+            jsonObject = getJsonData().put("subjects", remove(subjects, indexOfSubjectWithName(subject)));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void deleteGrade(Subject subject, Grade grade) {
-
+        try {
+            JSONObject subjectJSON = getSubject(subject);
+            JSONArray grades = subjectJSON.getJSONArray("grades");
+            saveJSONSubjectInSubjects(subjectJSON.put("grades", remove(grades, indexOfJSONArrayWithId(grades, grade.getId()))), indexOfSubjectWithName(subject));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void deleteHomework(Subject subject, Homework homework) {
-
+        try {
+            JSONObject subjectJSON = getSubject(subject);
+            JSONArray homeworkArray = subjectJSON.getJSONArray("homework");
+            saveJSONSubjectInSubjects(subjectJSON.put("homework", remove(homeworkArray, indexOfJSONArrayWithId(homeworkArray, homework.getId()))), indexOfSubjectWithName(subject));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void deleteReminder(Reminder reminder) {
-
+        try {
+            JSONArray reminders = getJsonData().getJSONArray("reminders");
+            jsonObject = getJsonData().put("reminders", remove(reminders, indexOfJSONArrayWithId(reminders, reminder.getId())));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void deleteLesson(Lesson lesson) {
-
+        try {
+            JSONArray lessons = getJsonData().getJSONArray("lessons");
+            jsonObject = getJsonData().put("lessons", remove(lessons, indexOfJSONArrayWithId(lessons, lesson.getId())));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void write() {
         try {
+            System.out.println(jsonObject);
             BufferedWriter writer = new BufferedWriter(new FileWriter(SAVE_FILE));
             writer.write(jsonObject.toString());
             writer.flush();
             writer.close();
             jsonObject = null;
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void reset() {
+        try {
+            jsonObject = new JSONObject("{\"subjects\": [],\"lessons\": [],\"reminders\": [],\"id\": 0}");
+            write();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }

@@ -105,6 +105,7 @@ public class Schedule {
         }
         float subjectsTotal = (float) subjects.size();
         return g/subjectsTotal;
+
     }
 
     public Map<Day, SchoolDay> getDays() {

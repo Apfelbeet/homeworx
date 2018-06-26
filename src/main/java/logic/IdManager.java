@@ -1,5 +1,7 @@
 package logic;
 
+import data.DataManager;
+
 public class IdManager {
 
     private static int Current_Id;
@@ -9,7 +11,9 @@ public class IdManager {
     }
 
     public static int generateId() {
-        return Current_Id++;
+        Current_Id++;
+        DataManager.saveId();
+        return Current_Id;
     }
 
     public static void setId(int id) {
