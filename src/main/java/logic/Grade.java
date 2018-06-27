@@ -1,3 +1,6 @@
+/**
+ * Class Grade creats single grades.
+ */
 package logic;
 
 public class Grade {
