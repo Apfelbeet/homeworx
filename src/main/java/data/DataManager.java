@@ -133,7 +133,7 @@ public class DataManager {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
+        return reminder;
     }
 
     private static SchoolDay[] readSchoolDays(ArrayList<Subject> subjects) {
@@ -148,7 +148,7 @@ public class DataManager {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
+        return days;
     }
 
     private static Subject getSubjectFromId(String name, ArrayList<Subject> subjects) {
@@ -194,7 +194,6 @@ public class DataManager {
                     .put("shortName", subject.getShortName());
 
             saveJSONSubjectInSubjects(subjectJSON, i);
-            //System.out.println(jsonObject);
             write();
         } catch (JSONException e) {
             e.printStackTrace();

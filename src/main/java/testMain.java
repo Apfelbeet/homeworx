@@ -35,6 +35,6 @@ public class testMain {
         DataManager.saveLesson(lesson1, s.getDayFromLesson(lesson1), s.getDays().get(s.getDayFromLesson(lesson1)));*/
 
         Schedule s2 = new Schedule();
-        System.out.println(s2.getLessonsOfDay(Day.Monday));
+        System.out.println(s2.calculateGradeAverage());
     }
 }
