@@ -91,6 +91,7 @@ public class Schedule {
         return subjects.get(subjects.indexOf(subject)).getHomework();
     }
 
+
     public void addNewGrade(Subject subject, Grade grade) {
         int index = subjects.indexOf(subject);
         if(index != -1){
@@ -112,4 +113,15 @@ public class Schedule {
         return days;
     }
 
+    public ArrayList<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public ArrayList<Reminder> getReminders() {
+        return reminders;
+    }
+
+    public void setReminders(ArrayList<Reminder> reminders) {
+        this.reminders = reminders;
+    }
 }

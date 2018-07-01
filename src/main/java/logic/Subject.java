@@ -82,4 +82,5 @@ public class Subject {
 
         return divide > 0 ? (tempOral+tempWritten)/divide : 0;
     }
+
 }
