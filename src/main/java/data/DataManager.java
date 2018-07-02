@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class DataManager {
-    private static final File SAVE_FILE = new File(ClassLoader.getSystemClassLoader().getResource("save.json").getFile());
+    private static final File SAVE_FILE = new File(/*ClassLoader.getSystemClassLoader().getResource("save.json").getFile()*/  System.getProperty("user.dir") + "\\out\\production\\classes\\save.json");
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     //private static final BlockingQueue<> queue = new LinkedBlockingDeque();
