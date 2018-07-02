@@ -117,6 +117,14 @@ public class Schedule {
         return g;
     }
 
+    public int getActiveHomeworkForDay(Day day) {
+        int g = 0;
+        for (int i = 0; i < days.get(day).getLessons().length; i++){
+                g += days.get(day).getLessons()[i].getSubject().getHomework().size();
+        }
+        return g;
+    }
+
     public Map<Day, SchoolDay> getDays() {
         return days;
     }
