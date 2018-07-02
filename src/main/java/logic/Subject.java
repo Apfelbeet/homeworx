@@ -11,6 +11,11 @@ public class Subject {
     private String name;
     private String shortName;
 
+    /**
+     *
+     * @param name: Name des Subjekts wird durch den Benutzer zugewiesen.
+     * @param shortName: Kürzel des Subjekts wird durch den Benutzer zugewiesen.
+     */
     public Subject(String name, String shortName) {
         this.name = name;
         this.shortName = shortName;
@@ -54,6 +59,20 @@ public class Subject {
         grades.add(grade);
     }
 
+    /**
+     * Zuerst werden die Attribute oralTotal(Summe der Notenwerte der mündlichen Noten), writtenTotal(Summe der Notenwerte der schriftlichen Noten), oralCount(Anzahl der mündlichen Noten),
+     * writternCount(Anzahl der schriftlichen Noten) werden deklariert sowie initialisiert.
+     * Mithilfe einer Forschleife werden alle Elemente der ArrayList grades durchlaufen.
+     * Ist ihr Notentyp eine Schulaufgabe wird der Notenwert zu writtenTotal addiert und writtenCount wird um 1 erhöht.
+     * Für alle anderen Fälle wird der Notenwert zu oralTotal addiert und oralCount um 1 erhöht.
+     *
+     * Nun werden die Attribute tempWritten(Durchschnitt der schriftlichen Noten), tempOral(Durchschnitt der mündlichen Noten) und divide(Der Nenner, der sich aus der Gewichtung der schriftlichen
+     * und mündlichen Notenypen zusammensetzt) werden deklariert sowie initialisiert.
+     * Dann wird überprüft ob die Anzahl der schriftlichen Noten nicht 0 oder kleiner ist, damit mathematische Fehler verhindert werden.
+     * Wenn dies der Fall ist, kann der schriftliche Durchschnitt durch Division der Summe der Notenwerte und Anzahl der Noten berechnet werden.
+     *
+     * @return Der berechnete Notenschnitt des Fachs wird als Wert mit Nachkommastellen zurückgegeben.
+     */
     public float calculateAverage() {
         float oralTotal = 0, writtenTotal = 0, oralCount = 0, writtenCount = 0;
 
