@@ -70,7 +70,11 @@ public class Subject {
      * und mündlichen Notenypen zusammensetzt) werden deklariert sowie initialisiert.
      * Dann wird überprüft ob die Anzahl der schriftlichen Noten nicht 0 oder kleiner ist, damit mathematische Fehler verhindert werden.
      * Wenn dies der Fall ist, kann der schriftliche Durchschnitt durch Division der Summe der Notenwerte und Anzahl der Noten berechnet werden.
+     * Dann wird überprüft ob die Anzahl der mündlichen Noten nicht 0 oder kleiner ist, damit mathematische Fehler verhindert werden.
+     * Wenn dies der Fall ist, kann der mündlichen Durchschnitt durch Division der Summe der Notenwerte und Anzahl der Noten berechnet werden.
+     * Der Nenner wird entsprechend der Gewichtung der Noten erhöht.
      *
+     * Im letzten Schritt wird erneut überprüft ob der Nenner gleich 0 ist. Wenn nicht wird der Durchschnitt der mündlichen und schriftlichen Noten durch den Nenner geteilt.
      * @return Der berechnete Notenschnitt des Fachs wird als Wert mit Nachkommastellen zurückgegeben.
      */
     public float calculateAverage() {

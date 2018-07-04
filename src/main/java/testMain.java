@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 public class testMain {
 
     public static void main(String[] args) {
-        /*Schedule s = new Schedule(5, false);
+        Schedule s = new Schedule(5, false);
         Subject subject1 = new Subject("Deutsch", "D");
         Subject subject2 = new Subject("Mathe", "M");
         Lesson lesson1 = new Lesson(1, subject1);
@@ -16,9 +16,14 @@ public class testMain {
         Lesson lesson3 = new Lesson(1, subject1);
         Lesson lesson4 = new Lesson(1, subject2);
         Grade grade1 = new Grade(1, GradeType.Ex);
-        Grade grade2 = new Grade(4, GradeType.Ex);
+        Grade grade2 = new Grade(1, GradeType.Ex);
+        Grade grade3 = new Grade(2, GradeType.Schulaufgabe);
         subject1.addNewGrade(grade1);
         subject1.addNewGrade(grade2);
+        subject1.addNewGrade(grade3);
+        subject2.addNewGrade(grade1);
+        subject2.addNewGrade(grade2);
+        subject2.addNewGrade(grade3);
         s.getDays().get(Day.Monday).setLesson(0, lesson1);
         s.getDays().get(Day.Monday).setLesson(1, lesson2);
         s.getDays().get(Day.Friday).setLesson(0, lesson3);
@@ -32,9 +37,10 @@ public class testMain {
         DataManager.saveGrade(subject1, new Grade(4, 4, GradeType.Kurztest));
         DataManager.saveHomework(subject1, new Homework("Schlafen", new GregorianCalendar(), 2));
         DataManager.saveReminder(new Reminder("Bennets Logo ist schlecht :P", new GregorianCalendar(), 10));
-        DataManager.saveLesson(lesson1, s.getDayFromLesson(lesson1), s.getDays().get(s.getDayFromLesson(lesson1)));*/
+        DataManager.saveLesson(lesson1, s.getDayFromLesson(lesson1), s.getDays().get(s.getDayFromLesson(lesson1)));
 
         Schedule s2 = new Schedule();
-        System.out.println(s2.calculateGradeAverage());
+        System.out.println(subject1.calculateAverage());
+
     }
 }
