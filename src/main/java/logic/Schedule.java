@@ -3,6 +3,7 @@ package logic;
 import data.Data;
 import data.DataManager;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 /*ouefhfefuef
@@ -91,7 +92,6 @@ public class Schedule {
         return subjects.get(subjects.indexOf(subject)).getHomework();
     }
 
-
     public void addNewGrade(Subject subject, Grade grade) {
         int index = subjects.indexOf(subject);
         if(index != -1){
@@ -109,7 +109,7 @@ public class Schedule {
 
     }
 
-    public int getActiveHomework(){
+    public int getHomeworkAmount(){
         int g = 0;
         for (int i = 0; i < subjects.size(); i++){
             g += subjects.get(i).getHomework().size();
@@ -117,7 +117,7 @@ public class Schedule {
         return g;
     }
 
-    public int getActiveHomeworkForDay(Day day) {
+    public int getHomeworkAmountForDay(Day day) {
         int g = 0;
         for (int i = 0; i < days.get(day).getLessons().length; i++){
                 g += days.get(day).getLessons()[i].getSubject().getHomework().size();
@@ -139,5 +139,25 @@ public class Schedule {
 
     public void setReminders(ArrayList<Reminder> reminders) {
         this.reminders = reminders;
+    }
+
+    public void removeLesson(Lesson lesson) {
+    days.forEach((key, value) -> {
+        for(int i = 0 ; i < value.getLessons().length; i++) {
+            if(value.getLessons()[i] != null && lesson.getId() == value.getLessons()[i].getId())
+                value.getLessons()[i] = null;
+        }
+    });
+    }
+
+    public void removeSubject(Subject subject) {
+        days.forEach((key, value) -> {
+            for(int i = 0 ; i < value.getLessons().length; i++) {
+                if(value.getLessons()[i] != null && subject.equals(value.getLessons()[i].getSubject()))
+                    value.getLessons()[i] = null;
+            }
+        });
+
+        subjects.remove(subject);
     }
 }
