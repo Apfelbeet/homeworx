@@ -9,11 +9,15 @@ import javafx.fxml.FXML;
 
 import java.io.File;
 import java.util.Objects;
+    // importieren der Libarys für die GUI
 
 public class LoadSchedule extends Application {
     @FXML
     private ListView schedulesListView;
 
+    /** Fenster Informationen werden festgelegt
+     *  Z.B die Fenstergröße, Titel, verzerrbar
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("LoadSchedule.fxml")));
@@ -26,6 +30,10 @@ public class LoadSchedule extends Application {
         stage.show();
     }
 
+    /** Fenster wird erzeugt und Methoden ausgeführt
+     * Stundenpläne werden geladen --> nur 1 wird automatisch ausgewählt / mehrere Auswahlfenster öffnet sich
+     *                             --> kein Stundenplan vorhanden --> neuer Stundenplan wird erstellt
+     */
     @FXML
     public void initialize(){
 
@@ -36,8 +44,8 @@ public class LoadSchedule extends Application {
                 for(File f : files){
                     schedulesListView.getItems().add(f.getName());
                 }
-            } else {
-                // TODO: Choose Schedule automatically
+            } else
+                // TODO: Choose Schedule auto
             }
 
         } else {
