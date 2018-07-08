@@ -6,10 +6,7 @@ import data.DataManager;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
-/*ouefhfefuef
 
- *
- */
 
 
 public class Schedule {
@@ -17,8 +14,11 @@ public class Schedule {
     ArrayList<Reminder> reminders;
     ArrayList<Subject> subjects;
 
-
-
+    /**
+     * Konstruktor, der den Stundenplan erzeugt
+     * @param dayLength: Attribut, dessen Wert beschreibt, wie lang der Tag ist
+     * @param weekendSchool: Booleansches Attribut, das definiert, ob auch Unterrichtsstunden am Wochenende sind und der Stundenplan somit erweitert werden muss
+     */
     public Schedule(int dayLength, boolean weekendSchool){
         days = new HashMap<Day, SchoolDay>();
         for(Day d : Day.values()){
@@ -39,7 +39,9 @@ public class Schedule {
         reminders = data.getReminder();
 
     }
-
+    /**
+     * Konstruktor, der einen anderen Konstruktor desselben Objekts aufruft
+     */
     public Schedule() {
         this(DataManager.readAll());
     }

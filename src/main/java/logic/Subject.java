@@ -13,8 +13,8 @@ public class Subject {
 
     /**
      *
-     * @param name: Name des Subjekts wird durch den Benutzer zugewiesen.
-     * @param shortName: Kürzel des Subjekts wird durch den Benutzer zugewiesen.
+     * @param name: Der Name des Subjekts wird durch den Benutzer zugewiesen.
+     * @param shortName: Das Kürzel des Subjekts wird durch den Benutzer zugewiesen.
      */
     public Subject(String name, String shortName) {
         this.name = name;
@@ -61,20 +61,20 @@ public class Subject {
 
     /**
      * Zuerst werden die Attribute oralTotal(Summe der Notenwerte der mündlichen Noten), writtenTotal(Summe der Notenwerte der schriftlichen Noten), oralCount(Anzahl der mündlichen Noten),
-     * writternCount(Anzahl der schriftlichen Noten) werden deklariert sowie initialisiert.
-     * Mithilfe einer Forschleife werden alle Elemente der ArrayList grades durchlaufen.
+     * writtenCount(Anzahl der schriftlichen Noten)  deklariert sowie initialisiert.
+     * Mithilfe einer For-Schleife werden alle Elemente der ArrayList grades durchlaufen.
      * Ist ihr Notentyp eine Schulaufgabe wird der Notenwert zu writtenTotal addiert und writtenCount wird um 1 erhöht.
      * Für alle anderen Fälle wird der Notenwert zu oralTotal addiert und oralCount um 1 erhöht.
      *
-     * Nun werden die Attribute tempWritten(Durchschnitt der schriftlichen Noten), tempOral(Durchschnitt der mündlichen Noten) und divide(Der Nenner, der sich aus der Gewichtung der schriftlichen
-     * und mündlichen Notenypen zusammensetzt) werden deklariert sowie initialisiert.
-     * Dann wird überprüft ob die Anzahl der schriftlichen Noten nicht 0 oder kleiner ist, damit mathematische Fehler verhindert werden.
+     * Anschließend werden die Attribute tempWritten(Durchschnitt der schriftlichen Noten), tempOral(Durchschnitt der mündlichen Noten) und divide(Der Nenner, der sich aus der Gewichtung der schriftlichen
+     * und mündlichen Notenypen zusammensetzt)  deklariert sowie initialisiert.
+     * Dann wird überprüft ob die Anzahl der schriftlichen Noten kleiner/gleich 0 ist, damit mathematische Fehler verhindert werden.
      * Wenn dies der Fall ist, kann der schriftliche Durchschnitt durch Division der Summe der Notenwerte und Anzahl der Noten berechnet werden.
-     * Dann wird überprüft ob die Anzahl der mündlichen Noten nicht 0 oder kleiner ist, damit mathematische Fehler verhindert werden.
+     * Dann wird überprüft ob die Anzahl der mündlichen Noten kleiner/gleich 0 ist, damit mathematische Fehler verhindert werden.
      * Wenn dies der Fall ist, kann der mündlichen Durchschnitt durch Division der Summe der Notenwerte und Anzahl der Noten berechnet werden.
      * Der Nenner wird entsprechend der Gewichtung der Noten erhöht.
      *
-     * Im letzten Schritt wird erneut überprüft ob der Nenner gleich 0 ist. Wenn nicht wird der Durchschnitt der mündlichen und schriftlichen Noten durch den Nenner geteilt.
+     * Im letzten Schritt wird erneut überprüft ob der Nenner kleiner/gleich 0 ist. Wenn nicht, wird der Durchschnitt der mündlichen und schriftlichen Noten durch den Nenner geteilt.
      * @return Der berechnete Notenschnitt des Fachs wird als Wert mit Nachkommastellen zurückgegeben.
      */
     public float calculateAverage() {
