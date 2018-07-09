@@ -1,5 +1,9 @@
 package ui;
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +13,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
+import javafx.util.Callback;
 import logic.Day;
 import logic.Lesson;
 import logic.Subject;
@@ -39,13 +44,17 @@ public class MainWindow extends Application {
     @FXML
     public void initialize(){
         subjectGrid.getColumns().add(new TableColumn("Montag"));
+        ObservableList<Lesson> xmpleList = FXCollections.observableArrayList(new ArrayList<Lesson>());
+        TableView<Lesson> tableView = new TableView<Lesson>(xmpleList);
 
         TableColumn<Lesson, String> mondayColumn = new TableColumn("Monday");
-        /*
-        mondayColumn.setCellValueFactory(
-                cellData -> cellData.getValue().getSubject().getName();
-        );
-        */
+
+        mondayColumn.setCellValueFactory(p -> {
+            // p.getValue() returns the Person instance for a particular TableView row
+            return new ReadOnlyStringWrapper(p.getValue().getSubject().getName());
+        });
+
+
     }
 
 }
