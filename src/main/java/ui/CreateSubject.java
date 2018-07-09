@@ -8,11 +8,11 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class CreateLesson extends Application{
+public class CreateSubject extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("CreateLesson.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("CreateSubject.fxml")));
 
         Scene scene = new Scene(root, 500, 250);
 
