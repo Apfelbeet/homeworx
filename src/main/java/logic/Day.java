@@ -1,7 +1,7 @@
 package logic;
 
 /**
-* Creats an enumaration of the weekdays.
+* Die Klasse Day erzeugt eine Enumeration der einzelnen Wochentage, sodass diese später vom Benutzer ausggewählt werden können.
  */
 public enum Day {
     Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
