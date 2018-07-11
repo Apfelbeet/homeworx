@@ -14,6 +14,12 @@ public class Schedule {
     ArrayList<Reminder> reminders;
     ArrayList<Subject> subjects;
 
+    public static Schedule schedule;
+
+    static {
+        schedule = new Schedule();
+    }
+
     /**
      * Konstruktor, der den Stundenplan erzeugt
      * @param dayLength: Attribut, dessen Wert beschreibt, wie lang der Tag ist
@@ -37,7 +43,6 @@ public class Schedule {
         IdManager.setId(data.getCurrentId());
         subjects = data.getSubjects();
         reminders = data.getReminder();
-
     }
     /**
      * Konstruktor, der einen anderen Konstruktor desselben Objekts aufruft

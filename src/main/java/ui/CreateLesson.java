@@ -11,7 +11,7 @@ import java.util.Objects;
 public class CreateLesson extends Application{
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("CreateLesson.fxml")));
 
         Scene scene = new Scene(root, 500, 250);
@@ -20,5 +20,9 @@ public class CreateLesson extends Application{
         stage.setScene(scene);
         stage.setResizable(true);
         stage.show();
+    }
+
+    public void bennetistcoll() {
+
     }
 }
