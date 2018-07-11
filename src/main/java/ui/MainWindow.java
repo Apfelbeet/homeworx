@@ -16,10 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.util.Callback;
-import logic.Day;
-import logic.Lesson;
-import logic.Schedule;
-import logic.Subject;
+import logic.*;
 import sun.applet.Main;
 
 import java.util.ArrayList;
@@ -54,16 +51,18 @@ public class MainWindow extends Application {
     @FXML
     public void initialize() {
 
-        ObservableList<Lesson> xmpleList = FXCollections.observableArrayList(Schedule.schedule.getDays().get(Day.Monday).getLessons());
-        TableView<Lesson> tableView = new TableView<>(xmpleList);
+        TableView<Lesson> tableView = new TableView<>();
 
-        TableColumn<Lesson, String> mondayColumn = new TableColumn("MondayHUI");
+        for(Day day : Day.values()){
+            ObservableList<Lesson> lessons = FXCollections.observableArrayList(Schedule.schedule.getDays().get(day).getLessons());
+            TableColumn<Lesson, String> lessonColumn = new TableColumn(day.toString());
 
-        mondayColumn.setCellValueFactory(p -> {
-            return new ReadOnlyStringWrapper(p.getValue().getSubject().getName());
-        });
-        tableView.getColumns().add(mondayColumn);
-       // tableView.
+            lessonColumn.setCellValueFactory(p -> {
+                return new ReadOnlyStringWrapper(p.getValue().getSubject().getName());
+            });
+            tableView.getColumns().add(lessonColumn);
+        }
+
         gridPane.add(tableView, 1,1);
 
 
