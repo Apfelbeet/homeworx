@@ -38,6 +38,7 @@ public class LoadSchedule extends Application {
     public void initialize(){
 
         File schedulesDirectory = new File(System.getProperty("user.dir").toString() + "\\schedules\\");
+        /*
         if(schedulesDirectory.isDirectory()){
             File[] files = schedulesDirectory.listFiles();
             if(files.length >= 1){
@@ -51,6 +52,7 @@ public class LoadSchedule extends Application {
         } else {
             // TODO: Create Folder and new Schedule
         }
+        */
 
     }
 
