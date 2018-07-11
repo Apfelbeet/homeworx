@@ -26,21 +26,21 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <JFXTextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <JFXTextField onAction="#chooseLesson" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Label text="Tag" GridPane.rowIndex="1" />
       <Label text="Fach" GridPane.rowIndex="2" />
       <Label text="Stunde" GridPane.rowIndex="3" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <ComboBox onAction="#chooseDay" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <effect>
             <Glow />
          </effect></ComboBox>
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <ComboBox onAction="#chooseSubject" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <effect>
             <Glow />
          </effect></ComboBox>
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#bennetistcoll" text="OK Bennet" textFill="#ff0202" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveChanges" text="OK " textFill="#ff0202" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
-            <Font name="System Bold Italic" size="33.0" />
+            <Font name="Comic Sans MS Bold Italic" size="33.0" />
          </font>
          <effect>
             <Lighting>

@@ -22,7 +22,19 @@ public class CreateLesson extends Application{
         stage.show();
     }
 
-    public void bennetistcoll() {
+    public void saveChanges() {
+
+    }
+
+    public void chooseDay(){
+
+    }
+
+    public void chooseSubject(){
+
+    }
+
+    public void chooseLesson(){
 
     }
 }
