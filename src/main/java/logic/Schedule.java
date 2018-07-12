@@ -113,7 +113,6 @@ public class Schedule {
         }
         float subjectsTotal = (float) subjects.size();
         return g/subjectsTotal;
-
     }
 
     public int getHomeworkAmount(){
@@ -167,4 +166,5 @@ public class Schedule {
 
         subjects.remove(subject);
     }
+
 }

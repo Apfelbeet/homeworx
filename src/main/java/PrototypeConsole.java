@@ -1,12 +1,9 @@
-import data.Data;
 import data.DataManager;
 import logic.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 

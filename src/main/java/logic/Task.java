@@ -69,4 +69,5 @@ public abstract class Task {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+
 }
