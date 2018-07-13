@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -33,19 +34,25 @@
                 <children>
                     <GridPane fx:id="name_pane" prefHeight="36.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.vgrow="NEVER">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="166.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="30.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="135.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="54.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="43.0" />
                         </columnConstraints>
                         <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         </rowConstraints>
                         <children>
-                            <Label fx:id="subject_name" text=" --- " GridPane.columnIndex="0">
+                            <JFXTextField fx:id="subject_name" editable="false" focusColor="#4d4d4d" text=" --- " GridPane.columnIndex="0">
                                 <font>
                                     <Font name="Roboto" size="19.0" />
                                 </font>
-                            </Label>
-                            <ImageView fx:id="edit_name" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                            </JFXTextField>
+                            <JFXTextField fx:id="subject_short" editable="false" focusColor="#4d4d4d" text=" [-] " GridPane.columnIndex="1">
+                                <font>
+                                    <Font name="Roboto" size="19.0" />
+                                </font>
+                            </JFXTextField>
+                            <ImageView fx:id="edit_name" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                                 <image>
                                     <Image url="@icons/baseline_edit_black_18dp.png" />
                                 </image>
@@ -55,7 +62,7 @@
                             <Insets left="2.0" />
                         </GridPane.margin>
                     </GridPane>
-                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <ImageView fx:id="back_button" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@icons/baseline_keyboard_arrow_left_black_18dp.png" />
                         </image>
@@ -178,7 +185,7 @@
                                             <Font size="15.0" />
                                         </font>
                                     </Label>
-                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                    <ImageView fx:id="edit_grades" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                                         <image>
                                             <Image url="@icons/baseline_edit_black_18dp.png" />
                                         </image>

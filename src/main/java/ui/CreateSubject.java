@@ -11,7 +11,7 @@ import java.util.Objects;
 public class CreateSubject extends Application{
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("CreateSubject.fxml")));
 
         Scene scene = new Scene(root, 500, 250);

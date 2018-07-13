@@ -19,7 +19,7 @@ public class PrototypeConsole {
     private static void init() {
         System.out.println("PrototypeConsole started");
         scanner = new Scanner(System.in);
-        schedule = new Schedule();
+        //schedule = new Schedule();
         while (command(scanner.nextLine())) {
         }
         System.out.println("PrototypeConsole terminated");
@@ -29,6 +29,8 @@ public class PrototypeConsole {
         String[] splitString = line.split(" ");
         if (splitString[0].equals("exit")) {
             return false;
+        }else if(splitString[0].equals("init")) {
+            schedule = Schedule.schedule;
         } else if (splitString.length == 2 && splitString[0].equals("reset") && splitString[1].equals("schedule")) {
             schedule = new Schedule();
             System.out.println("schedule reset");
