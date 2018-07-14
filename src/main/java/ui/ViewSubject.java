@@ -124,7 +124,7 @@ public class ViewSubject extends Pane {
         });
 
         edit_grades.setOnMouseClicked(event -> {
-            //TODO
+            BaseWindow.Stage.setScene(new Scene(new ViewGrade(subject)));
         });
 
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<fx:root type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane fx:id="basic_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="358.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="370.0" minHeight="42.0" prefHeight="358.0" />
+        </rowConstraints>
+        <children>
+            <GridPane fx:id="top_pane">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="0.0" prefWidth="41.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="490.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="31.0" />
+                    <ColumnConstraints />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <ImageView fx:id="back_button" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@icons/baseline_keyboard_arrow_left_black_18dp.png" />
+                        </image>
+                    </ImageView>
+                    <Label fx:id="subject_name" text=" --- " GridPane.columnIndex="1">
+                        <font>
+                            <Font name="Roboto" size="19.0" />
+                        </font>
+                    </Label>
+                    <ImageView fx:id="add_button" fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                        <image>
+                            <Image url="@icons/baseline_add_black_18dp.png" />
+                        </image>
+                    </ImageView>
+                </children>
+            </GridPane>
+            <GridPane GridPane.rowIndex="1">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <GridPane.margin>
+                    <Insets bottom="200.0" left="100.0" right="100.0" top="80.0" />
+                </GridPane.margin>
+                <children>
+                    <Label alignment="CENTER" prefHeight="19.0" prefWidth="265.0" text="Noten Art">
+                        <font>
+                            <Font name="Roboto" size="15.0" />
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" prefHeight="19.0" prefWidth="267.0" text="Note" GridPane.columnIndex="1">
+                        <font>
+                            <Font name="Roboto" size="15.0" />
+                        </font>
+                    </Label>
+                    <JFXComboBox fx:id="grade_type" focusColor="#4d4d4d" prefWidth="150.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                    <JFXComboBox fx:id="grade_value" focusColor="#4d4d4d" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                </children>
+            </GridPane>
+        </children>
+        <padding>
+            <Insets bottom="7.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+    </GridPane>
+</fx:root>

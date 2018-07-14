@@ -3,7 +3,12 @@
  */
 package logic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Grade {
+    public static final ArrayList<Integer> VALUES = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+
     private int id;
     private int value;
     private GradeType gradeType;
@@ -41,6 +46,18 @@ public class Grade {
 
     public GradeType getGradeType() {
         return gradeType;
+    }
+
+    public void setGradeType(GradeType gradeType) {
+        this.gradeType = gradeType;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }
 
