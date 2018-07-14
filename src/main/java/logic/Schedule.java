@@ -21,20 +21,32 @@ public class Schedule {
     }
 
     /**
-     * Konstruktor, der den Stundenplan erzeugt
+     * Konstruktor (Einrichtungskonstruktor), der den Stundenplan das erste Mal zur Einrichtung erzeugt
      * @param dayLength: Attribut, dessen Wert beschreibt, wie lang der Tag ist
      * @param weekendSchool: Booleansches Attribut, das definiert, ob auch Unterrichtsstunden am Wochenende sind und der Stundenplan somit erweitert werden muss
+     * Days ist eine Hashmap, also wird jedem Day (Schlüssel) ein Schoolday (Datensatz) zugeordnet.
+     * Dann wird in einer For-Schleife jeder Tag durchgegangen und dann in die Hashmap eingefügt und einem Schultag (mit Eingabeparameter dayLength) zugewiesen.
+     * Wenn der aktuelle Tag ein Wochenendstag ist und weekendSchool false ist, dann wird die For-Schleife abgebrochen, damit die Wochenendstage nicht in den Stundenplan mit
+     * eingefügt werden.
      */
     public Schedule(int dayLength, boolean weekendSchool){
         days = new HashMap<Day, SchoolDay>();
         for(Day d : Day.values()){
-            /*if(d == Day.Saturday)
-                break;*/
+            if(d == Day.Saturday && !weekendSchool)
+                break;
 
             days.put(d, new SchoolDay(dayLength));
         }
     }
 
+    /**
+     * Konstruktor (Ladekonstruktor), der für jedes Starten des Programms nach der Einrichtung die persistenten Daten lädt.
+     * @param data: Ein Datenpaket, das alle wichtigen Information enthält, die zum Aufsetzen des Stundenplans bei jeder neuen Anwendung benötigt und gespeichert werden müssen.
+     * Alle gespeicherten SchoolDays werden durchgegangen und für jeden Tag werden die gespeicherten SchoolDays aufgerufen und jedem Tag entsprechend in der Hashmap zugefügt.
+     * Im Folgenden Schritt wird die aktuelle Id aufgerufen, damit beim Neustart des Programms bereits vergebene Ids nicht erneut vergeben werden.
+     * Die bereits gespeicherten Daten von subject und reminders werden abgerufen / zugewiesen, damit beim Neustart des Programms diese nicht erneut vergeben werden müssen.
+     *
+     */
     public Schedule(Data data) {
         days = new HashMap<Day, SchoolDay>();
         for(int i = 0; i < data.getSchoolDays().length; i++) {
@@ -45,7 +57,8 @@ public class Schedule {
         reminders = data.getReminder();
     }
     /**
-     * Konstruktor, der einen anderen Konstruktor desselben Objekts aufruft
+     * Konstruktor (Nutzerkonstruktor), der vom Nutzer nach jedem Neustarten aufgerufen wird.
+     * Dabei ruft er den Konstruktor den Ladekonstruktor auf und gibt ihm alle Informationen des DataManager weiter.
      */
     public Schedule() {
         this(DataManager.readAll());

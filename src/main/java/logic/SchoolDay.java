@@ -42,9 +42,8 @@ public class SchoolDay {
         return lessons;
     }
     /**
-     * Methode zum Herausfinden des Index' ("Position/Platzierung" im Array), um anschließend auf dieses zugreifen zu können
-     * * @param description: Beschreibung der zu erledigenden Hausaufgabe
-     * @param l: Referenz auf die Klasse Lesson
+     * Methode zum Herausfinden des Index' ("Position/Platzierung" im Array), um anschließend auf dieses zugreifen zu können.
+     * @param l: Objekt der Klasse Lesson, dessen Index gesucht wird.
      * Mittels einer For-Schleife werden alle Elemente des Arrays lessons mit dem eingegebenen Parameter abgeglichen.
      * Entspricht das aktuell zu vergleichende Element dem eingegebenen Objekt, so wird i als Variable für die "Position/Platzierung" ausgegeben.
      * Sollten alle Elemente des Arrays vergeblich auf Gleichheit überprüft werden, so wird -1 zurückgegeben.
