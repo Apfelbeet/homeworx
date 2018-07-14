@@ -13,8 +13,8 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class DataManager {
-    private static final File SAVE_FILE = new File(/*ClassLoader.getSystemClassLoader().getResource("save.json").getFile()*/  System.getProperty("user.dir") + "\\out\\production\\classes\\save.json");
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private static final File SAVE_FILE = new File(/*ClassLoader.getSystemClassLoader().getResource("save.json").getFile()*/  System.getProperty("user.dir") + "\\out\\production\\resources\\save.json");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     //private static final BlockingQueue<> queue = new LinkedBlockingDeque();
     private static JSONObject jsonObject = null;
@@ -65,7 +65,7 @@ public class DataManager {
 
             JSONArray array = getJsonData().getJSONArray("subjects");
             for (int i = 0; i < array.length(); i++) {
-                list.add(new Subject(array.getJSONObject(i).getString("name"), array.getJSONObject(i).getString("shortName")));
+                list.add(new Subject(Integer.parseInt(array.getJSONObject(i).getString("id")), array.getJSONObject(i).getString("name"), array.getJSONObject(i).getString("shortName")));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class DataManager {
         try {
             JSONArray jsonArray = getJsonData().getJSONArray("subjects");
             for (int i = 0; i < jsonArray.length(); i++) {
-                if (jsonArray.getJSONObject(i).getString("name").equals(subject.getName())) {
+                if (jsonArray.getJSONObject(i).getInt("id") == subject.getId()) {
                     return jsonArray.getJSONObject(i);
                 }
             }
@@ -143,7 +143,7 @@ public class DataManager {
             JSONArray array = getJsonData().getJSONArray("lessons");
             for (int i = 0; i < array.length(); i++) {
                 JSONObject tempObject = array.getJSONObject(i);
-                days[Day.valueOf(tempObject.getString("day")).ordinal()].getLessons()[tempObject.getInt("hour")] = new Lesson(tempObject.getInt("id"), tempObject.getInt("length"), getSubjectFromId(tempObject.getString("subject"), subjects));
+                days[Day.valueOf(tempObject.getString("day")).ordinal()].getLessons()[tempObject.getInt("hour")] = new Lesson(tempObject.getInt("id"), tempObject.getInt("length"), getSubjectFromId(tempObject.getInt("subject"), subjects));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -151,9 +151,9 @@ public class DataManager {
         return days;
     }
 
-    private static Subject getSubjectFromId(String name, ArrayList<Subject> subjects) {
+    private static Subject getSubjectFromId(int id, ArrayList<Subject> subjects) {
         for (Subject subject : subjects) {
-            if (subject.getName().equals(name)) return subject;
+            if (subject.getId() == id) return subject;
         }
         return null;
     }
@@ -191,7 +191,8 @@ public class DataManager {
             }
             subjectJSON
                     .put("name", subject.getName())
-                    .put("shortName", subject.getShortName());
+                    .put("shortName", subject.getShortName())
+                    .put("id", subject.getId());
 
             saveJSONSubjectInSubjects(subjectJSON, i);
             write();
@@ -270,7 +271,7 @@ public class DataManager {
             JSONObject lessonJSON = new JSONObject()
                     .put("id", lesson.getId())
                     .put("length", lesson.getLength())
-                    .put("subject", lesson.getSubject().getName())
+                    .put("subject", lesson.getSubject().getId())
                     .put("day", day.name())
                     .put("hour", schoolDay.getLessonIndex(lesson));
             if (i > -1)
@@ -300,7 +301,7 @@ public class DataManager {
         try {
             JSONArray array = getJsonData().getJSONArray("subjects");
             for (int i = 0; i < array.length(); i++) {
-                if (array.getJSONObject(i).getString("name").equals(subject.getName())) {
+                if (array.getJSONObject(i).getInt("id") == subject.getId()) {
                     return i;
                 }
             }

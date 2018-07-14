@@ -9,6 +9,7 @@ public class Subject {
     private ArrayList<Homework> homework;
     private ArrayList<Grade> grades;
     private String name;
+    private int id;
     private String shortName;
 
     /**
@@ -16,11 +17,16 @@ public class Subject {
      * @param name: Der Name des Subjekts wird durch den Benutzer zugewiesen.
      * @param shortName: Das Kürzel des Subjekts wird durch den Benutzer zugewiesen.
      */
-    public Subject(String name, String shortName) {
+    public Subject(int id, String name, String shortName) {
+        this.id = id;
         this.name = name;
         this.shortName = shortName;
         grades = new ArrayList<>();
         homework = new ArrayList<>();
+    }
+
+    public Subject(String name, String shortName) {
+        this(IdManager.generateId(), name, shortName);
     }
 
     public ArrayList<Homework> getHomework() {
@@ -57,6 +63,10 @@ public class Subject {
 
     public void addNewGrade(Grade grade) {
         grades.add(grade);
+    }
+
+    public int getId() {
+        return id;
     }
 
     /**

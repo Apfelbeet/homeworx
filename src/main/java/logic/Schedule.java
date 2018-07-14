@@ -14,6 +14,12 @@ public class Schedule {
     ArrayList<Reminder> reminders;
     ArrayList<Subject> subjects;
 
+    public static Schedule schedule;
+
+    static {
+        schedule = new Schedule();
+    }
+
     /**
      * Konstruktor (Einrichtungskonstruktor), der den Stundenplan das erste Mal zur Einrichtung erzeugt
      * @param dayLength: Attribut, dessen Wert beschreibt, wie lang der Tag ist
@@ -49,7 +55,6 @@ public class Schedule {
         IdManager.setId(data.getCurrentId());
         subjects = data.getSubjects();
         reminders = data.getReminder();
-
     }
     /**
      * Konstruktor (Nutzerkonstruktor), der vom Nutzer nach jedem Neustarten aufgerufen wird.
@@ -121,7 +126,6 @@ public class Schedule {
         }
         float subjectsTotal = (float) subjects.size();
         return g/subjectsTotal;
-
     }
 
     public int getHomeworkAmount(){
@@ -175,4 +179,5 @@ public class Schedule {
 
         subjects.remove(subject);
     }
+
 }
