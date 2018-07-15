@@ -81,7 +81,7 @@ public class ViewSubject extends Pane {
         Schedule.schedule.getDays().forEach((key, value) -> {
             int index = 0;
             for(Lesson lesson: value.getLessons()) {
-                if(lesson != null && lesson.getSubject().equals(subject)) lessons.add(String.format("%s: %d.%s Stunde", key.name(), index +1, lesson.getLength() > 1 ? String.format("- %d.", index +1 + lesson.getLength()) : ""));
+                if(lesson != null && lesson.getSubject().equals(subject)) lessons.add(String.format("%s: %d.%s Stunde", key.name(), index +1, lesson.getLength() > 1 ? String.format("- %d.", index +1 + lesson.getLength()-1) : ""));
                 index++;
             }
         });
@@ -120,7 +120,7 @@ public class ViewSubject extends Pane {
         });
 
         add_lesson.setOnMouseClicked(event -> {
-            //TODO
+            BaseWindow.Stage.setScene(new Scene(new CreateLesson(subject)));
         });
 
         edit_grades.setOnMouseClicked(event -> {

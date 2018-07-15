@@ -5,9 +5,10 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Grade {
-    public static final ArrayList<Integer> VALUES = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+    public static final List<Integer> VALUES = Arrays.asList(1, 2, 3, 4, 5, 6);
 
     private int id;
     private int value;
@@ -59,6 +60,8 @@ public class Grade {
     public void setValue(int value) {
         this.value = value;
     }
+
 }
+
 
 

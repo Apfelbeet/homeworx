@@ -1,13 +1,17 @@
 package ui;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import com.jfoenix.skins.JFXComboBoxListViewSkin;
 import data.DataManager;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.ComboBoxTreeTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -35,12 +40,18 @@ public class ViewGrade extends Pane {
     private boolean onEdit;
 
     //@FXML private
-    @FXML private Label subject_name;
-    @FXML private ImageView back_button;
-    @FXML private ImageView add_button;
-    @FXML private ImageView edit_button;
-    @FXML private Label grade_average;
-    @FXML private JFXTreeTableView<GradeElement> table;
+    @FXML
+    private Label subject_name;
+    @FXML
+    private ImageView back_button;
+    @FXML
+    private ImageView add_button;
+    @FXML
+    private ImageView edit_button;
+    @FXML
+    private Label grade_average;
+    @FXML
+    private JFXTreeTableView<GradeElement> table;
 
     public ViewGrade(Subject subject) {
         this.subject = subject;
@@ -70,7 +81,7 @@ public class ViewGrade extends Pane {
         });
 
         edit_button.setOnMouseClicked(event -> {
-            if(!onEdit) {
+            if (!onEdit) {
                 edit_button.setScaleY(1.2);
                 edit_button.setScaleX(1.2);
                 edit_button.setImage(new Image(ClassLoader.getSystemClassLoader().getResource("icons/baseline_done_black_18dp.png").toString()));
@@ -78,7 +89,7 @@ public class ViewGrade extends Pane {
                 back_button.setDisable(true);
                 add_button.setDisable(true);
                 table.setEditable(true);
-            }else {
+            } else {
                 edit_button.setScaleY(1);
                 edit_button.setScaleX(1);
                 edit_button.setImage(new Image(ClassLoader.getSystemClassLoader().getResource("icons/baseline_edit_black_18dp.png").toString()));
@@ -86,7 +97,7 @@ public class ViewGrade extends Pane {
                 back_button.setDisable(false);
                 add_button.setDisable(false);
                 table.setEditable(false);
-                for(int i = 0; i < table.getCurrentItemsCount(); i++) {
+                for (int i = 0; i < table.getCurrentItemsCount(); i++) {
                     //table.getSelectionModel().getSelectedCells().get(0).getTreeTableView().setEditable(false);
                     Grade grade = table.getTreeItem(i).getValue().getGrade();
                     grade.setValue(Integer.parseInt(table.getTreeItem(i).getValue().getValue().get()));
@@ -96,9 +107,21 @@ public class ViewGrade extends Pane {
             }
         });
 
+        Callback<TreeTableColumn.CellDataFeatures<GradeElement, GradeType>, ObservableValue<GradeType>> typeFactory = param -> {
+            TreeItem<GradeElement> treeItem = param.getValue();
+            GradeElement type = treeItem.getValue();
+            return new SimpleObjectProperty<>(type.getGrade().getGradeType());
+        };
+
+        Callback<TreeTableColumn.CellDataFeatures<GradeElement, Integer>, ObservableValue<Integer>> valueFactory = param -> {
+            TreeItem<GradeElement> treeItem = param.getValue();
+            GradeElement type = treeItem.getValue();
+            return new SimpleObjectProperty<>(type.getGrade().getValue());
+        };
+
         Callback<TreeTableColumn<GradeElement, String>, TreeTableCell<GradeElement, String>> tableFactory = param -> {
             GenericEditableTreeTableCell<GradeElement, String> gt = new GenericEditableTreeTableCell<>();
-            gt.setFont(new Font("Roboto", 15.0));
+            gt.setFont(new Font("Roboto", 10.0));
             gt.setPadding(new Insets(5));
             return gt;
         };
@@ -121,22 +144,24 @@ public class ViewGrade extends Pane {
             return gt;
         };
 
-        JFXTreeTableColumn<GradeElement, String> gradeType = new JFXTreeTableColumn<>("Noten Art");
-        gradeType.setCellValueFactory(param -> param.getValue().getValue().getType());
-        gradeType.setCellFactory(tableFactory);
+        JFXTreeTableColumn<GradeElement, GradeType> gradeType = new JFXTreeTableColumn<>("Noten Art");
+        gradeType.setCellValueFactory(typeFactory);
+        //gradeType.setCellFactory(tableFactory);
         //gradeType.setEditable(false);
-        gradeType.setCellValueFactory((TreeTableColumn.CellDataFeatures<GradeElement, String> param) ->{
-            if(gradeType.validateValue(param)) return param.getValue().getValue().getType();
-            else return gradeType.getComputedValue(param);
-        });
+        //gradeType.setCellValueFactory((TreeTableColumn.CellDataFeatures<GradeElement, GradeType> param) -> {
+        //    if (gradeType.validateValue(param)) return param.getValue().getValue().getGrade().getGradeType();
+        //    else return gradeType.getComputedValue(param);
+        //});
+        ObservableList<GradeType> typeList = FXCollections.observableArrayList(GradeType.values());
+        gradeType.setCellFactory(JFXComboBoxTreeTableCell.forTreeTableColumn(typeList));
 
-        JFXTreeTableColumn<GradeElement, String> value = new JFXTreeTableColumn<>("Note");
+
+        JFXTreeTableColumn<GradeElement, Integer> value = new JFXTreeTableColumn<>("Note");
         //value.setEditable(false);
-        value.setCellFactory(tableFactory);
-        value.setCellValueFactory((TreeTableColumn.CellDataFeatures<GradeElement, String> param) ->{
-            if(value.validateValue(param)) return param.getValue().getValue().getValue();
-            else return value.getComputedValue(param);
-        });
+        value.setCellValueFactory(valueFactory);
+        ObservableList<Integer> valueList = FXCollections.observableList(Grade.VALUES);
+        value.setCellFactory(JFXComboBoxTreeTableCell.forTreeTableColumn(valueList));
+
 
         JFXTreeTableColumn<GradeElement, String> delete = new JFXTreeTableColumn<>("Löschen");
         delete.setEditable(false);
@@ -154,8 +179,8 @@ public class ViewGrade extends Pane {
         table.setEditable(false);
         table.getColumns().setAll(gradeType, value, delete);
 
-
     }
+
 
     private void back() {
         BaseWindow.Stage.setScene(new Scene(new ViewSubject(subject)));
@@ -168,7 +193,7 @@ public class ViewGrade extends Pane {
 
         public GradeElement(Grade grade) {
             this.grade = grade;
-            this.type = new SimpleStringProperty(grade.getGradeType().name()) ;
+            this.type = new SimpleStringProperty(grade.getGradeType().name());
             this.value = new SimpleStringProperty(String.valueOf(grade.getValue()));
         }
 
@@ -184,5 +209,6 @@ public class ViewGrade extends Pane {
             return grade;
         }
     }
+
 
 }
