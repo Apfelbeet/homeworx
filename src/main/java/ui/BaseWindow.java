@@ -14,7 +14,7 @@ public class BaseWindow extends Application {
     public void start(Stage stage) {
         Stage = stage;
 
-        Pane pane = new ViewSubject(Schedule.schedule.getSubjects().get(0));
+        Pane pane = new ViewSchedule();
         Scene scene = new Scene(pane);
 
         stage.setTitle("HomeworX: " + System.getProperty("user.dir"));

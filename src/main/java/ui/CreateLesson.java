@@ -54,6 +54,8 @@ public class CreateLesson extends Pane {
         ArrayList<Subject> subjects = Schedule.schedule.getSubjects();
         subjectComboBox.getItems().clear();
         subjectComboBox.setItems(FXCollections.observableArrayList(subjects));
+        subjectComboBox.setValue(subject.getName());
+        subjectComboBox.setDisable(true);
 
         hourTextField.setItems(FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11));
 
@@ -62,13 +64,14 @@ public class CreateLesson extends Pane {
         });
 
         saveButton.setOnAction(event -> {
-            Lesson l = new Lesson(Integer.parseInt(lengthTextField.getText()), (Subject)subjectComboBox.getValue());
+            Lesson l = new Lesson(Integer.parseInt(lengthTextField.getText()), subject);
             SchoolDay day = Schedule.schedule.getDays().get(Day.valueOf(dayComboBox.getValue().toString()));
 
             day.setLesson(hourTextField.getValue() -1, l);
             DataManager.saveLesson(l, Day.valueOf(dayComboBox.getValue().toString()), day);
             back();
         });
+
 
     }
 

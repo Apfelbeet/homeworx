@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<fx:root type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane fx:id="basic_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="358.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="370.0" minHeight="42.0" prefHeight="358.0" />
+        </rowConstraints>
+        <children>
+            <GridPane fx:id="top_pane">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="0.0" prefWidth="41.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="497.0" minWidth="10.0" prefWidth="487.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="398.0" minWidth="10.0" prefWidth="30.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="8.0" prefWidth="35.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+               <ImageView fx:id="delete_button" fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                  <image>
+                     <Image url="@icons/baseline_delete_black_36dp.png" />
+                  </image>
+               </ImageView>
+               <ImageView fx:id="add_button" fitHeight="25.0" fitWidth="25.0" layoutX="566.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <image>
+                     <Image url="@icons/baseline_add_black_18dp.png" />
+                  </image>
+               </ImageView>
+                </children>
+            </GridPane>
+         <FlowPane fx:id="pane" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <GridPane.margin>
+               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </GridPane.margin></FlowPane>
+        </children>
+        <padding>
+            <Insets bottom="7.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+    </GridPane>
+</fx:root>

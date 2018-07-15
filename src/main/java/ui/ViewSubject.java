@@ -137,8 +137,7 @@ public class ViewSubject extends Pane {
     }
 
     private void back() {
-        //TODO
-        System.exit(-1);
+        BaseWindow.Stage.setScene(new Scene(new ViewSchedule()));
     }
 
     private class HomeworkCell extends ListCell<Homework> {
