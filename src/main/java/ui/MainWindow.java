@@ -54,7 +54,7 @@ public class MainWindow extends Application {
         TableView<Lesson> tableView = new TableView<>();
 
         for(Day day : Day.values()){
-            ObservableList<Lesson> lessons = FXCollections.observableArrayList(Schedule.schedule.getDays().get(day).getLessons());
+            //ObservableList<Lesson> lessons = FXCollections.observableArrayList(Schedule.schedule.getDays().get(day).getLessons());
             TableColumn<Lesson, String> lessonColumn = new TableColumn(day.toString());
 
             lessonColumn.setCellValueFactory(p -> {
@@ -63,9 +63,50 @@ public class MainWindow extends Application {
             tableView.getColumns().add(lessonColumn);
         }
 
-        gridPane.add(tableView, 1,1);
-
+        gridPane.add(tableView, 0,1);
 
     }
 
+}
+
+class HourSubject{
+    private Lesson mondayHour;
+    private Lesson tuesdayHour;
+    private Lesson wednesdayHour;
+    private Lesson thursdayHour;
+    private Lesson fridayHour;
+    private Lesson saturdayHour;
+    private Lesson sundayHour;
+
+    public HourSubject(ArrayList<Lesson> lessons){
+        for(int i = 0; i < lessons.size(); i++){
+            Lesson currLesson = lessons.get(i);
+
+            switch(i){
+                case 0:
+                    mondayHour = currLesson;
+                    break;
+                case 1:
+                    tuesdayHour = currLesson;
+                    break;
+                case 2:
+                    wednesdayHour = currLesson;
+                    break;
+                case 3:
+                    thursdayHour = currLesson;
+                    break;
+                case 4:
+                    fridayHour = currLesson;
+                    break;
+                case 5:
+                    saturdayHour = currLesson;
+                    break;
+                case 6:
+                    saturdayHour = currLesson;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }

@@ -62,7 +62,6 @@ public class DataManager {
     private static ArrayList<Subject> readSubjects() {
         ArrayList<Subject> list = new ArrayList<>();
         try {
-
             JSONArray array = getJsonData().getJSONArray("subjects");
             for (int i = 0; i < array.length(); i++) {
                 list.add(new Subject(Integer.parseInt(array.getJSONObject(i).getString("id")), array.getJSONObject(i).getString("name"), array.getJSONObject(i).getString("shortName")));
