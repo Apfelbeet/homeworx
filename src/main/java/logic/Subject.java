@@ -69,6 +69,10 @@ public class Subject {
         return id;
     }
 
+    public String toString(){
+        return name;
+    }
+
     /**
      * Zuerst werden die Attribute oralTotal(Summe der Notenwerte der mündlichen Noten), writtenTotal(Summe der Notenwerte der schriftlichen Noten), oralCount(Anzahl der mündlichen Noten),
      * writtenCount(Anzahl der schriftlichen Noten)  deklariert sowie initialisiert.

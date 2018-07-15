@@ -22,24 +22,46 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <JFXTextField fx:id="hourTextField" onAction="#chooseLesson" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label text="Tag" GridPane.rowIndex="1">
+      <JFXTextField fx:id="hourTextField" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <padding>
+            <Insets right="10.0" />
+         </padding></JFXTextField>
+      <Label text="Tag">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>
-      <Label text="Fach" GridPane.rowIndex="2">
+      <Label text="Fach" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>
-      <Label text="Stunde" GridPane.rowIndex="3">
+      <Label text="Stunde" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>
-      <JFXComboBox fx:id="dayComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <JFXComboBox fx:id="subjectComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <JFXButton mnemonicParsing="false" text="Speichern" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+      <JFXComboBox fx:id="dayComboBox" prefWidth="150.0" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets right="10.0" />
+         </GridPane.margin></JFXComboBox>
+      <JFXComboBox fx:id="subjectComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <padding>
+            <Insets right="10.0" />
+         </padding></JFXComboBox>
+      <JFXButton fx:id="saveButton" mnemonicParsing="false" onAction="#saveButton_Action" text="Speichern" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></JFXButton>
+      <JFXTextField fx:id="lengthTextField" layoutX="160.0" layoutY="198.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+      </JFXTextField>
+      <Label layoutX="20.0" layoutY="202.0" text="Länge" GridPane.rowIndex="3">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
    </children>
 </GridPane>
