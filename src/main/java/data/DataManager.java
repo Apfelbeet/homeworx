@@ -329,6 +329,7 @@ public class DataManager {
         try {
             JSONArray subjects = getJsonData().getJSONArray("subjects");
             jsonObject = getJsonData().put("subjects", remove(subjects, indexOfSubjectWithName(subject)));
+            deleteLessons(subject);
             write();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -372,6 +373,22 @@ public class DataManager {
         try {
             JSONArray lessons = getJsonData().getJSONArray("lessons");
             jsonObject = getJsonData().put("lessons", remove(lessons, indexOfJSONArrayWithId(lessons, lesson.getId())));
+            write();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteLessons(Subject subject) {
+        try {
+            JSONArray lessons = getJsonData().getJSONArray("lessons");
+            //jsonObject = getJsonData().put("lessons", remove(lessons, indexOfJSONArrayWithId(lessons, lesson.getId())));
+            for(int i = 0; i < lessons.length(); i++) {
+                if(lessons.getJSONObject(i).getInt("subject") == subject.getId()) {
+                    lessons = remove(lessons, i);
+                }
+            }
+            jsonObject = getJsonData().put("lessons", lessons);
             write();
         } catch (JSONException e) {
             e.printStackTrace();

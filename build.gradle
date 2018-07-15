@@ -16,7 +16,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'data.DataManager'
+        attributes 'Main-Class': 'ui.BaseWindow'
     }
     from {
         configurations.compile.collect {it.isDirectory() ? it : zipTree(it)}

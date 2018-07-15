@@ -1,6 +1,7 @@
 package ui;
 
 import com.jfoenix.controls.JFXListView;
+import data.Data;
 import data.DataManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,10 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import logic.Homework;
-import logic.Lesson;
-import logic.Schedule;
-import logic.Subject;
+import logic.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,6 +43,7 @@ public class ViewSubject extends Pane {
     @FXML private ImageView add_homework;
     @FXML private ImageView add_lesson;
     @FXML private ImageView edit_grades;
+    @FXML private ImageView delete_button;
 
 
     public ViewSubject(Subject subject) {
@@ -84,13 +83,14 @@ public class ViewSubject extends Pane {
                 if(lesson != null && lesson.getSubject().equals(subject)) lessons.add(String.format("%s: %d.%s Stunde", key.name(), index +1, lesson.getLength() > 1 ? String.format("- %d.", index +1 + lesson.getLength()-1) : ""));
                 index++;
             }
+
         });
         ObservableList<String> lessonItems = FXCollections.observableList(lessons);
         term_list.setItems(lessonItems);
         lesson_label.setText(String.format("%d %s", lessons.size(), lessons.size() != 1 ? "Unterrichtstermine" : "Unterrichtstermin"));
 
         back_button.setOnMouseClicked(event -> {
-            //TODO
+            back();
         });
 
         edit_name.setOnMouseClicked(event -> {
@@ -116,7 +116,7 @@ public class ViewSubject extends Pane {
         });
 
         add_homework.setOnMouseClicked(event -> {
-            //TODO
+            BaseWindow.Stage.setScene(new Scene(new CreateHomework(subject)));
         });
 
         add_lesson.setOnMouseClicked(event -> {
@@ -127,9 +127,18 @@ public class ViewSubject extends Pane {
             BaseWindow.Stage.setScene(new Scene(new ViewGrade(subject)));
         });
 
+        delete_button.setOnMouseClicked(event -> {
+            Schedule.schedule.removeSubject(subject);
+            DataManager.deleteSubject(subject);
+            back();
+        });
 
 
+    }
 
+    private void back() {
+        //TODO
+        System.exit(-1);
     }
 
     private class HomeworkCell extends ListCell<Homework> {
@@ -152,6 +161,31 @@ public class ViewSubject extends Pane {
 
 
     }
+
+    /*private class LessonCell extends ListCell<Lesson> {
+        private Day day;
+        private int index;
+
+
+        public LessonCell(Day day, int index) {
+            setOnMouseClicked(onClick);
+            this.day = day;
+            this.index = index;
+        }
+
+        @Override
+        protected void updateItem(Lesson item, boolean empty) {
+            super.updateItem(item, empty);
+            if(!empty) setText(String.format("%s: %d.%s Stunde", Schedule.schedule.getDayFromLesson(item).name(), index +1, item.getLength() > 1 ? String.format("- %d.", index +1 + item.getLength()-1) : ""));
+        }
+
+        private EventHandler<MouseEvent> onClick = event -> {
+            if (event.getClickCount() == 2 && !isEmpty()) {
+            }
+        };
+
+
+    }*/
 
 
 }
