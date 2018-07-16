@@ -52,7 +52,7 @@ public class CreateSubject extends Pane {
     }
 
     private void back() {
-        BaseWindow.Stage.setScene(new Scene(new ViewSchedule()));
+        BaseWindow.Stage.setScene(new Scene(new MainWindow()));
     }
     /*@Override
     public void start(Stage stage) throws Exception {

@@ -46,4 +46,8 @@ public class Lesson {
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
+
+    public String toString(){
+        return getSubject().getName();
+    }
 }

@@ -100,8 +100,8 @@ public class ViewGrade extends Pane {
                 for (int i = 0; i < table.getCurrentItemsCount(); i++) {
                     //table.getSelectionModel().getSelectedCells().get(0).getTreeTableView().setEditable(false);
                     Grade grade = table.getTreeItem(i).getValue().getGrade();
-                    grade.setValue(Integer.parseInt(table.getTreeItem(i).getValue().getValue().get()));
-                    grade.setGradeType(GradeType.valueOf(table.getTreeItem(i).getValue().getType().get()));
+                    grade.setValue(Integer.parseInt(table.getTreeItem(i).getValue().getValue().getValue()));
+                    grade.setGradeType(GradeType.valueOf(table.getTreeItem(i).getValue().getType().getValue()));
                     DataManager.saveGrade(subject, grade);
                 }
             }
@@ -110,6 +110,7 @@ public class ViewGrade extends Pane {
         Callback<TreeTableColumn.CellDataFeatures<GradeElement, GradeType>, ObservableValue<GradeType>> typeFactory = param -> {
             TreeItem<GradeElement> treeItem = param.getValue();
             GradeElement type = treeItem.getValue();
+
             return new SimpleObjectProperty<>(type.getGrade().getGradeType());
         };
 
@@ -154,6 +155,9 @@ public class ViewGrade extends Pane {
         //});
         ObservableList<GradeType> typeList = FXCollections.observableArrayList(GradeType.values());
         gradeType.setCellFactory(JFXComboBoxTreeTableCell.forTreeTableColumn(typeList));
+        gradeType.setOnEditCommit(event -> {
+            event.getRowValue().getValue().setType(event.getNewValue().toString());
+        });
 
 
         JFXTreeTableColumn<GradeElement, Integer> value = new JFXTreeTableColumn<>("Note");
@@ -161,6 +165,9 @@ public class ViewGrade extends Pane {
         value.setCellValueFactory(valueFactory);
         ObservableList<Integer> valueList = FXCollections.observableList(Grade.VALUES);
         value.setCellFactory(JFXComboBoxTreeTableCell.forTreeTableColumn(valueList));
+        value.setOnEditCommit(event -> {
+            event.getRowValue().getValue().setValue(event.getNewValue().toString());
+        });
 
 
         JFXTreeTableColumn<GradeElement, String> delete = new JFXTreeTableColumn<>("Löschen");
@@ -178,6 +185,7 @@ public class ViewGrade extends Pane {
         table.setShowRoot(false);
         table.setEditable(false);
         table.getColumns().setAll(gradeType, value, delete);
+
 
     }
 
@@ -207,6 +215,18 @@ public class ViewGrade extends Pane {
 
         public Grade getGrade() {
             return grade;
+        }
+
+        public void setValue(String value) {
+            this.value.set(value);
+        }
+
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public void setType(String type) {
+            this.type.set(type);
         }
     }
 

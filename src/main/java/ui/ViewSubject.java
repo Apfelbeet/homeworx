@@ -1,5 +1,6 @@
 package ui;
 
+import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 import data.Data;
 import data.DataManager;
@@ -137,10 +138,10 @@ public class ViewSubject extends Pane {
     }
 
     private void back() {
-        BaseWindow.Stage.setScene(new Scene(new ViewSchedule()));
+        BaseWindow.Stage.setScene(new Scene(new MainWindow()));
     }
 
-    private class HomeworkCell extends ListCell<Homework> {
+    private class HomeworkCell extends JFXListCell<Homework> {
 
         public HomeworkCell() {
             setOnMouseClicked(onClick);

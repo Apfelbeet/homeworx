@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class DataManager {
-    private static final File SAVE_FILE = new File(/*ClassLoader.getSystemClassLoader().getResource("save.json").getFile()*/  System.getProperty("user.dir") + "\\out\\production\\resources\\save.json");
+    private static final File SAVE_FILE = new File(/*ClassLoader.getSystemClassLoader().getResource("save.json").getFile()  */ System.getProperty("user.dir") + "\\out\\production\\classes\\save.json" /*ClassLoader.getSystemClassLoader().getResource("save.json").getFile()*/);
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     //private static final BlockingQueue<> queue = new LinkedBlockingDeque();
@@ -399,9 +399,11 @@ public class DataManager {
         try {
             System.out.println(jsonObject);
             BufferedWriter writer = new BufferedWriter(new FileWriter(SAVE_FILE));
-            writer.write(jsonObject.toString());
-            writer.flush();
-            writer.close();
+            if(jsonObject != null) {
+                writer.write(jsonObject.toString());
+                writer.flush();
+                writer.close();
+            }
             jsonObject = null;
         } catch (IOException e) {
             e.printStackTrace();
