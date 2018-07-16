@@ -1,5 +1,7 @@
 package ui;
 
+import com.jfoenix.controls.JFXListCell;
+import com.jfoenix.controls.JFXListView;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
@@ -27,13 +29,27 @@ public class MainWindow extends Application {
     @FXML
     private ProgressBar hallo;
 
-    @FXML
-    private TableView subjectGrid;
     private Scene scene;
     private Stage stage;
 
     @FXML
     private GridPane gridPane;
+
+    @FXML
+    public JFXListView<Lesson> mondayListView;
+    @FXML
+    public JFXListView<Lesson> tuesdayListView;
+    @FXML
+    public JFXListView<Lesson> wednesdayListView;
+    @FXML
+    public JFXListView<Lesson> thursdayListView;
+    @FXML
+    public JFXListView<Lesson> fridayListView;
+    @FXML
+    public JFXListView<Lesson> saturdayListView;
+    @FXML
+    public JFXListView<Lesson> sundayListView;
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -50,26 +66,62 @@ public class MainWindow extends Application {
 
     @FXML
     public void initialize() {
+        for (Day day : Day.values()) {
+            ObservableList<Lesson> lessons = FXCollections.observableArrayList(Schedule.schedule.getDays().get(day).getLessons());
 
-        TableView<Lesson> tableView = new TableView<>();
+            switch (day) {
+                case Monday:
 
-        for(Day day : Day.values()){
-            //ObservableList<Lesson> lessons = FXCollections.observableArrayList(Schedule.schedule.getDays().get(day).getLessons());
-            TableColumn<Lesson, String> lessonColumn = new TableColumn(day.toString());
+                    mondayListView.setItems(lessons);
+                    mondayListView.setCellFactory(listView -> new LessonElement());
+                    break;
+                case Tuesday:
 
-            lessonColumn.setCellValueFactory(p -> {
-                return new ReadOnlyStringWrapper(p.getValue().getSubject().getName());
-            });
-            tableView.getColumns().add(lessonColumn);
+                    tuesdayListView.setItems(lessons);
+                    tuesdayListView.setCellFactory(listView -> new LessonElement());
+                    break;
+                case Wednesday:
+
+                    wednesdayListView.setItems(lessons);
+                    wednesdayListView.setCellFactory(listView -> new LessonElement());
+                    break;
+                case Thursday:
+
+                    thursdayListView.setItems(lessons);
+                    thursdayListView.setCellFactory(listView -> new LessonElement());
+                    break;
+                case Friday:
+
+                    fridayListView.setItems(lessons);
+                    fridayListView.setCellFactory(listView -> new LessonElement());
+                    break;
+                case Saturday:
+
+                    saturdayListView.setItems(lessons);
+                    saturdayListView.setCellFactory(listView -> new LessonElement());
+                    break;
+                case Sunday:
+
+                    sundayListView.setItems(lessons);
+                    sundayListView.setCellFactory(listView -> new LessonElement());
+                    break;
+            }
         }
-
-        gridPane.add(tableView, 0,1);
 
     }
 
 }
 
-class HourSubject{
+class LessonElement extends JFXListCell<Lesson> {
+    @Override
+    protected void updateItem(Lesson item, boolean empty) {
+        super.updateItem(item, empty);
+        if (!empty) setText(item.getSubject().getName());
+    }
+
+}
+
+class HourSubject {
     private Lesson mondayHour;
     private Lesson tuesdayHour;
     private Lesson wednesdayHour;
@@ -78,11 +130,11 @@ class HourSubject{
     private Lesson saturdayHour;
     private Lesson sundayHour;
 
-    public HourSubject(ArrayList<Lesson> lessons){
-        for(int i = 0; i < lessons.size(); i++){
+    public HourSubject(ArrayList<Lesson> lessons) {
+        for (int i = 0; i < lessons.size(); i++) {
             Lesson currLesson = lessons.get(i);
 
-            switch(i){
+            switch (i) {
                 case 0:
                     mondayHour = currLesson;
                     break;

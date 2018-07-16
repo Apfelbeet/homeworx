@@ -17,7 +17,7 @@ public class BaseWindow extends Application {
         Pane pane = new ViewSchedule();
         Scene scene = new Scene(pane);
 
-        stage.setTitle("HomeworX: " + System.getProperty("user.dir"));
+        stage.setTitle("HomeworX");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
